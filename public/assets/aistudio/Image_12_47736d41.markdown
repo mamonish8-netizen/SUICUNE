@@ -1,0 +1,251 @@
+---
+name: Aquatic Precision Intelligence
+colors:
+  surface: '#f8f9ff'
+  surface-dim: '#cbdbf5'
+  surface-bright: '#f8f9ff'
+  surface-container-lowest: '#ffffff'
+  surface-container-low: '#eff4ff'
+  surface-container: '#e5eeff'
+  surface-container-high: '#dce9ff'
+  surface-container-highest: '#d3e4fe'
+  on-surface: '#0b1c30'
+  on-surface-variant: '#3f4850'
+  inverse-surface: '#213145'
+  inverse-on-surface: '#eaf1ff'
+  outline: '#707881'
+  outline-variant: '#bfc7d2'
+  surface-tint: '#006398'
+  primary: '#006194'
+  on-primary: '#ffffff'
+  primary-container: '#007bb9'
+  on-primary-container: '#fdfcff'
+  inverse-primary: '#93ccff'
+  secondary: '#565e74'
+  on-secondary: '#ffffff'
+  secondary-container: '#dae2fd'
+  on-secondary-container: '#5c647a'
+  tertiary: '#006195'
+  on-tertiary: '#ffffff'
+  tertiary-container: '#287ab3'
+  on-tertiary-container: '#fdfcff'
+  error: '#ba1a1a'
+  on-error: '#ffffff'
+  error-container: '#ffdad6'
+  on-error-container: '#93000a'
+  primary-fixed: '#cce5ff'
+  primary-fixed-dim: '#93ccff'
+  on-primary-fixed: '#001d31'
+  on-primary-fixed-variant: '#004b73'
+  secondary-fixed: '#dae2fd'
+  secondary-fixed-dim: '#bec6e0'
+  on-secondary-fixed: '#131b2e'
+  on-secondary-fixed-variant: '#3f465c'
+  tertiary-fixed: '#cde5ff'
+  tertiary-fixed-dim: '#94ccff'
+  on-tertiary-fixed: '#001d32'
+  on-tertiary-fixed-variant: '#004b74'
+  background: '#f8f9ff'
+  on-background: '#0b1c30'
+  surface-variant: '#d3e4fe'
+  ocean-deep: '#0f172a'
+  ocean-mid: '#0369a1'
+  aquatic-primary: '#0284c7'
+  aquatic-tint: '#e0f2fe'
+  aquatic-subtle: '#bae6fd'
+  canvas-base: '#f8fafc'
+  surface-clean: '#ffffff'
+  border-subtle: '#e2e8f0'
+  border-active: '#bae6fd'
+  text-primary: '#0f172a'
+  text-secondary: '#475569'
+  text-muted: '#64748b'
+  hazard-alert: '#e11d48'
+  hazard-tint: '#ffe4e6'
+  warning-amber: '#d97706'
+  warning-tint: '#fef3c7'
+  status-optimal: '#0284c7'
+typography:
+  display-lg:
+    fontFamily: Manrope
+    fontSize: 48px
+    fontWeight: '700'
+    lineHeight: 56px
+  display-lg-mobile:
+    fontFamily: Manrope
+    fontSize: 34px
+    fontWeight: '700'
+    lineHeight: 42px
+  headline-lg:
+    fontFamily: Manrope
+    fontSize: 32px
+    fontWeight: '600'
+    lineHeight: 40px
+  headline-lg-mobile:
+    fontFamily: Manrope
+    fontSize: 24px
+    fontWeight: '600'
+    lineHeight: 32px
+  headline-md:
+    fontFamily: Manrope
+    fontSize: 22px
+    fontWeight: '600'
+    lineHeight: 28px
+  headline-sm:
+    fontFamily: Manrope
+    fontSize: 18px
+    fontWeight: '600'
+    lineHeight: 26px
+  title-md:
+    fontFamily: Manrope
+    fontSize: 16px
+    fontWeight: '600'
+    lineHeight: 24px
+  body-lg:
+    fontFamily: Inter
+    fontSize: 16px
+    fontWeight: '400'
+    lineHeight: 24px
+  body-md:
+    fontFamily: Inter
+    fontSize: 14px
+    fontWeight: '400'
+    lineHeight: 20px
+  body-sm:
+    fontFamily: Inter
+    fontSize: 12px
+    fontWeight: '400'
+    lineHeight: 18px
+  label-lg:
+    fontFamily: Inter
+    fontSize: 14px
+    fontWeight: '500'
+    lineHeight: 20px
+  label-md:
+    fontFamily: Inter
+    fontSize: 12px
+    fontWeight: '500'
+    lineHeight: 16px
+  label-sm:
+    fontFamily: Inter
+    fontSize: 11px
+    fontWeight: '600'
+    lineHeight: 14px
+    letterSpacing: 0.02em
+rounded:
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  md: 0.75rem
+  lg: 1rem
+  xl: 1.5rem
+  full: 9999px
+spacing:
+  gutter: 1.5rem
+  gutter-mobile: 1rem
+  margin: 2rem
+  margin-mobile: 1rem
+  space-xs: 0.25rem
+  space-sm: 0.5rem
+  space-md: 1rem
+  space-lg: 1.5rem
+  space-xl: 2.5rem
+---
+
+## Brand & Style
+
+This design system establishes a high-performance visual standard for intelligent water resource management, hydraulic monitoring, and computational telemetry. Moving away from terrestrial botanical aesthetics, the experience centers on clean, pristine water intelligence, deep oceanic stability, and clear cerulean dynamics.
+
+The brand personality merges computational rigor with fluid, crystalline clarity. It is engineered for civil utility engineers, hydrologists, and executive utility planners who require high-contrast legibility, immediate anomaly detection, and decisive situational awareness. The emotional response evokes pure confidence, clinical transparency, and deep technical reliability.
+
+The design philosophy adopts an elevated **Modern Minimalist & Data-Dense Utility** approach:
+- Crisp white surfaces framed with precise aquatic tint borders.
+- Deep ocean navy structural elements that anchor navigational weight.
+- Dynamic cerulean and cyan accents for operational verification, active sensor paths, and real-time hydraulic states.
+- High-contrast typography paired with airy negative space to maintain clarity through lengthy monitoring shifts.
+
+## Colors
+
+The chromatic language transitions entirely from terrestrial flora greens to an aquatic spectrum of high-clarity cyans, cerulean streams, and deep abyssal navies.
+
+### Key Roles
+- **Primary (`#0284C7` / Cerulean Cyan):** Focal action triggers, live telemetry streams, active valves, verified flow conduits, and essential state switches.
+- **Secondary (`#0F172A` / Ocean Navy):** High-order layout structures, persistent headers, primary text, and definitive boundary anchors.
+- **Tertiary (`#0369A1` / Deep Aquatic Blue):** Interactive hover states, elevated metric labels, and high-emphasis analytical line paths.
+- **Neutral (`#64748B` / Slate):** Systematic metadata, dimensional units, secondary axis dividers, and passive wireframes.
+
+### Tonal Accents & Badges
+- **Aquatic Tint (`#E0F2FE`):** Primary card fills, structural container backgrounds, and highlight strips.
+- **Aquatic Subtle (`#BAE6FD`):** Selection rings, border highlights, and secondary active button grounds.
+- **Canvas Base (`#F8FAFC`):** Glare-free ultra-clean background foundation providing seamless contrast for white data cards.
+
+### Semantic States
+- **Optimal / Flowing (`#0284C7`):** Nominal filtration status, compliant purity ratings, and steady pipeline flow.
+- **Elevated Warning (`#D97706` / Amber):** Silt accumulation, threshold variances, or routine service requirements.
+- **Critical Alert (`#E11D48` / Rose Carmine):** Hydrostatic pressure spikes, biological contamination, or system shutoff protocols.
+
+## Typography
+
+The typography couples the structured architectural confidence of **Manrope** for primary titles, numbers, and high-level KPIs with the objective legibility of **Inter** for data grids, body descriptions, and operational micro-labels.
+
+- **Tabular Figures:** Always use `font-variant-numeric: tabular-nums` for telemetry data, flow values (m³/s, PSI, mg/L), and timestamp feeds to ensure clean vertical alignment across scanning columns.
+- **Display Adaptability:** Primary display headers scale from 48px to 34px on mobile screens, preserving layout density on handheld diagnostic tablets and phones.
+- **Hierarchy & Ink:** Headings and critical numeric readouts render in Deep Ocean Navy (`#0F172A`). Secondary body metrics utilize Slate (`#475569`), while metric unit descriptions leverage `label-sm` in desaturated Slate (`#64748B`) with positive letter tracking for legibility against tinted containers.
+
+## Layout & Spacing
+
+The layout model uses a responsive fluid grid optimized for high data clarity, structural separation, and rapid dashboard scanning.
+
+### Grid Configuration
+- **Desktop (≥1200px):** 12 columns, 24px (`1.5rem`) gutters, and 32px (`2rem`) outer margin. Accommodates simultaneous sensor feeds, geographic pipeline overlays, and operational command ribbons.
+- **Tablet (768px – 1199px):** 8 columns, 16px (`1rem`) gutters, and 24px (`1.5rem`) canvas margins. Navigation panels collapse into structured vertical slide-outs.
+- **Mobile (<768px):** 4 columns, 16px (`1rem`) gutters, and 16px (`1rem`) outer margins. Cards reflow into unified vertical streams with sticky metric summaries.
+
+### Spatial Rhythm
+All spacing adheres strictly to an 8px base rhythm with 4px sub-intervals. Component-internal spacing uses `space-xs` (4px) and `space-sm` (8px) for tightly grouped indicators and form controls, `space-md` (16px) for modular inner card padding, and `space-xl` (40px) to divide telemetry panels.
+
+## Elevation & Depth
+
+Visual hierarchy uses crisp, high-contrast borders and low-opacity oceanic ambient diffusion, avoiding murky drop shadows.
+
+- **Level 0 (Canvas):** Clean Base (`#F8FAFC`).
+- **Level 1 (Data Cards & Standard Modules):** Pristine White (`#FFFFFF`) grounded with a 1px solid border in `#E2E8F0`. On hover or selection, the border sharpens to `#BAE6FD` with a soft cyan ambient halo: `0 4px 16px -2px rgba(2, 132, 199, 0.08), 0 1px 3px 0 rgba(15, 23, 42, 0.04)`.
+- **Level 2 (Popovers, Flyouts & Overlays):** `#FFFFFF` surfaces bounded by a crisp 1px border in `#0284C7` (20% opacity) and elevated with a clean directional shadow: `0 12px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(2, 132, 199, 0.06)`.
+- **Frosted Translucency:** Modal backdrops and pinned telemetry topbars use an aquatic glass effect: `rgba(248, 250, 252, 0.85)` fill with `backdrop-filter: blur(12px)` and a bottom border of `1px solid #BAE6FD`.
+
+## Shapes
+
+The shape architecture operates at roundedness level **2**, balancing precision engineering with smooth fluid surfaces.
+
+- **Micro Controls & Badges (Chips, Status Pills, Dot Containers):** Fully rounded (`9999px`) to create smooth, droplet-inspired capsules for operational status badges, tags, and category chips.
+- **Core Interactive Elements (Buttons, Inputs, Toggles):** 8px (`0.5rem`) radius, providing a crisp, confident structural shape for fast touch and click accuracy.
+- **Containers & Surfaces (Cards, Metric Modules, Tables):** 16px (`1rem`) corner radius for primary dashboard cards. High-level display panels and modal frames use 24px (`1.5rem`).
+
+## Components
+
+### Buttons
+- **Primary Button:** `#0284C7` background, `#FFFFFF` text, font-weight 600, 8px radius. Hover state transitions to Deep Ocean Blue (`#0369A1`). Active state scales down to 98% with `#0c4a6e`.
+- **Secondary Button:** Light Aquatic Tint (`#E0F2FE`) background, `#0284C7` text, 1px border in `#BAE6FD`. Hover state transitions to `#BAE6FD` fill with `#0369A1` text.
+- **Ghost / Tertiary Button:** Transparent background, Deep Ocean Navy (`#0F172A`) text. Hover state introduces `#E0F2FE` background at 60% opacity with `#0284C7` text.
+- **Destructive Button:** Rose Carmine (`#E11D48`) fill, `#FFFFFF` text. Hover transitions to `#be123c`.
+
+### Chips & Badges
+- **Shape:** Pill-shaped (`rounded-full`) with `space-xs` vertical and `space-sm` horizontal padding.
+- **Optimal / Safe:** `#E0F2FE` background, `#0284C7` label, accompanied by a 6px solid pulsing dot in `#0284C7`.
+- **Warning:** `#FEF3C7` background, `#D97706` label, 1px border in `#FDE68A`.
+- **Critical / Contamination:** `#FFE4E6` background, `#E11D48` label, 1px border in `#FECDD3`.
+- **Neutral Telemetry Tag:** `#F1F5F9` background, `#475569` text, 1px border in `#E2E8F0`.
+
+### Cards & Modules
+- Clean White (`#FFFFFF`) interior fill, 16px radius, and standard 16px to 20px internal padding.
+- Explicit, razor-sharp perimeter: `1px solid #E2E8F0`.
+- Secondary nested modules (e.g., historical telemetry readouts, pressure logs) sit on `#F8FAFC` or `#E0F2FE` (30% opacity) with a subtle border in `#E2E8F0`.
+
+### Form Inputs & Controls
+- **Inputs & Dropdowns:** `#FFFFFF` background, `1.5px solid #CBD5E1` border, 8px radius, `#0F172A` input text.
+- **Focus State:** Crisp border shift to `#0284C7` accompanied by an aquatic glow ring: `0 0 0 3px rgba(2, 132, 199, 0.20)`.
+- **Checkboxes & Radios:** Unchecked states feature a 1.5px border in `#94A3B8` on `#FFFFFF`. Checked states display a solid `#0284C7` fill with `#FFFFFF` glyph indicators.
+
+### Data Visualizations & Gauges
+- **Telemetry Charts:** Crisp 2px line paths in `#0284C7` and `#0369A1`. Area fills underneath use a vertical gradient flowing from `#0284C7` (25% opacity) down to `#E0F2FE` (0% opacity).
+- **Threshold Grids:** Horizontal target baselines use `#CBD5E1` with a dashed 1px pattern. Exceeded upper thresholds trigger an accent line in `#E11D48`.
+- **Flow Gauges & Bar Levels:** Background track in `#E0F2FE`; filled active fluid volume renders in `#0284C7`.

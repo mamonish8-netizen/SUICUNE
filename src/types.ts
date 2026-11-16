@@ -1,0 +1,17 @@
+export type TabRoute = 'home' | 'analytics' | 'alerts' | 'rewards' | 'rainwater';
+
+export type ToastHandler = (message: string, icon?: string) => void;
+
+export const ASSETS = {
+  logo: 'https://lh3.googleusercontent.com/aida/ALJJyrCHjUzIfG1QU0T5StFQsaPWhXXRsv3L2lPPZa78w1jAJSK48oQfpqjjzdF8mKOxz5Awr1-LS48sEU4GoI7ZFMBmhhIaCz3CfOxUrXU9wKlQqVnKwABjQWOn4_TOTN1eLmbmAoPWH_plS-7iSSdd0xkn6Gl8HmqXu8HYyliZYpJJ09Aq6YYvx-LWwbh3GAP2MbA1-b1IQoW3bJmomsw8cGtaIIuIxaNkciYZUgRzT9jY1cd4G8xGf6Fr5SvB',
+  profileElena:
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuCRhY87RwE5DQ32uFzCvunEaaYuLWNmUDjXx0ElqSUCGSkU8FtRdfBqcqFiTv113-5BrV3cY6a7TQk23jNVUx-Bl0ToNjvga6tSoKRLUyVrcowBKmHl5hVYIg6ZIlMkUnru3k92KetiY2RJeMSIUszdfQlD8xclkeHKfBZL4rBsJ5LKaHToxwB7HFhyVWcgWhKITyCtW4sMAhGL8IJUzCguWtctglCiRNDY6Mw-JuUN',
+  profileAlt:
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuCcTPW_gi3MMOJTNrFNLIK_JfbrvP799XajA8MWDn-MjQmNklPYMFwjVUDwXRYCH43ppTs0iXCodGkQcOwH7qI-Rur6ReDASXMC10bF5uFLchFWgVo38R9PwkLRYhKhzHc0A2e2MgEhyb_Vb9u8_2kj-T5jY4q89HiF1iE9Xq0WOy-mLsqmMJIs9YDv4QVD5rbo5Rb49R8ztOMTt27-pA7ra7WwF5lOulzcenI-85x',
+  plumbingFixture:
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuDELD27E_i45whak1oXd_w6n7goE4NK5asuaVJzQlS2KLR2SNw26dEEAgIJcih2odElrY6bpuOQ53q38hI056ES9EExW2rezSonSu8Y-qENP_dtHE2rwFBMX1uyusiiJGy9rjSj0-gK1tN4dcEwuk4nNIjHi_SCFAziHC3ucAzvLYzr4YCO0WS6jTRbn_avT2wm-LcAGR-xwJIgYPZbfyrTIYAZCzmfdSBLEItYFG4Y',
+  techResponder:
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuD4wmMDTZ2dVHxGpRW-wozGWxsykn9_9xxocjvFy6wkuRQuXTFVcWfp31pW8NTOZz0cD1DFwBl4DUGN3_FzXjjWdUI1wJI2SZBJsDVLSLO57zzq0ErPu7j9hFQtBKmdKcqGKkeJfVSeYx-Yb95yL9NjoabXA9jf1BXQpd2RoVIbJT8Rxmx71bDIsvtFfOe04fj-GdlrjLjgZl63Wz1cVLrC57HSF2Dg82wz1VhyTli4',
+  rainwaterPlant:
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuCQ2rz816baOySd5alBiBdU3x_ikQAwlYFESimv6jH2HfOwjwHIcfDlAce0PxB840jRnbg_qb00CGr2PFnFcurlj5ZlljXBX_ZxY8LLPL6FIgRpkvBv-UQ_v9Sptep5ROAUsZ0t5VDKIttz3GnDKzGRqJZrq6SnPHznGipubiz71FU674R_8vBG-8rrgmlsAtcyq1J9lN6tZN-RVTndNtxFYEe9MyHiH0Ovk891Y_an',
+};

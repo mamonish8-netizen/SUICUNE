@@ -1,0 +1,6 @@
+{
+  "name": "Suicune — Aquatic Precision Intelligence",
+  "description": "Intelligent household water management, telemetry analytics, leakage alerts, conservation rewards, and rainwater harvesting tracker.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

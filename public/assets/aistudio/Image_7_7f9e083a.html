@@ -1,0 +1,1015 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<meta content="mobile_tab" name="shell-type">
+<title>AQUA AI - Household Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "text-primary": "#0f172a",
+            "on-secondary-fixed-variant": "#3f465c",
+            "tertiary-container": "#287ab3",
+            "warning-amber": "#d97706",
+            "surface-container-highest": "#d3e4fe",
+            "secondary": "#0284c7",
+            "on-primary-container": "#fdfcff",
+            "hazard-tint": "#ffe4e6",
+            "on-tertiary-fixed-variant": "#004b74",
+            "on-secondary-container": "#0369a1",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#707881",
+            "on-surface-variant": "#475569",
+            "primary-fixed-dim": "#93ccff",
+            "tertiary-fixed": "#cde5ff",
+            "surface-bright": "#f8f9ff",
+            "text-muted": "#64748b",
+            "tertiary": "#006195",
+            "on-primary-fixed-variant": "#004b73",
+            "on-surface": "#0b1c30",
+            "surface-variant": "#d3e4fe",
+            "secondary-fixed": "#dae2fd",
+            "surface-container-high": "#dce9ff",
+            "secondary-container": "#e0f2fe",
+            "aquatic-subtle": "#bae6fd",
+            "inverse-on-surface": "#eaf1ff",
+            "ocean-deep": "#0f172a",
+            "outline-variant": "#bae6fd",
+            "primary-fixed": "#cce5ff",
+            "background": "#f8f9ff",
+            "aquatic-primary": "#0284c7",
+            "inverse-surface": "#213145",
+            "border-active": "#bae6fd",
+            "surface-container-low": "#f0f9ff",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed": "#131b2e",
+            "on-tertiary-fixed": "#001d32",
+            "status-optimal": "#0284c7",
+            "surface-container": "#e5eeff",
+            "on-error-container": "#93000a",
+            "text-secondary": "#475569",
+            "on-background": "#0b1c30",
+            "surface": "#f8f9ff",
+            "canvas-base": "#f8fafc",
+            "border-subtle": "#bae6fd",
+            "surface-dim": "#cbdbf5",
+            "on-primary": "#ffffff",
+            "primary": "#0284c7",
+            "tertiary-fixed-dim": "#94ccff",
+            "on-primary-fixed": "#001d31",
+            "error": "#ba1a1a",
+            "inverse-primary": "#93ccff",
+            "primary-container": "#007bb9",
+            "on-error": "#ffffff",
+            "hazard-alert": "#e11d48",
+            "warning-tint": "#fef3c7",
+            "ocean-mid": "#0369a1",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed-dim": "#bec6e0",
+            "surface-tint": "#0284c7",
+            "surface-clean": "#ffffff",
+            "aquatic-tint": "#e0f2fe",
+            "on-tertiary-container": "#fdfcff"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xl": "2.5rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "margin": "2rem",
+            "space-md": "1rem"
+          },
+          fontFamily: {
+            "label-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "display-lg-mobile": ["Manrope", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "display-lg": ["Manrope", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "headline-lg-mobile": ["Manrope", "sans-serif"],
+            "headline-sm": ["Manrope", "sans-serif"],
+            "headline-md": ["Manrope", "sans-serif"],
+            "title-md": ["Manrope", "sans-serif"],
+            "headline-lg": ["Manrope", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9ff;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        overscroll-behavior-y: none;
+        min-height: max(884px, 100dvh);
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Fluid Aquatic Animations */
+    @keyframes waterGaugeSweep {
+      0% {
+        stroke-dashoffset: 414;
+        filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.3));
+      }
+      50% {
+        stroke-dashoffset: 145;
+        filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7));
+      }
+      100% {
+        stroke-dashoffset: 154;
+        filter: drop-shadow(0 0 4px rgba(2, 132, 199, 0.4));
+      }
+    }
+    @keyframes waterPulseBar {
+      0%, 100% {
+        transform: scaleY(1);
+      }
+      50% {
+        transform: scaleY(1.06);
+      }
+    }
+    @keyframes rippleEffect {
+      0% {
+        box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.35);
+      }
+      70% {
+        box-shadow: 0 0 0 8px rgba(2, 132, 199, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(2, 132, 199, 0);
+      }
+    }
+
+    .water-gauge-flow {
+      stroke-dasharray: 414;
+      stroke-dashoffset: 154;
+      animation: waterGaugeSweep 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      transform-origin: center;
+    }
+    .water-bar-pulse {
+      transform-origin: bottom;
+      animation: waterPulseBar 3.2s ease-in-out infinite;
+    }
+    .water-pulse-dot {
+      animation: rippleEffect 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-full flex flex-col antialiased selection:bg-secondary-container">
+<!-- Header with Suicune Logo, status, notifications bell & avatar -->
+<header class="fixed top-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl border-b border-aquatic-subtle/40 shadow-xs">
+<div class="h-16 px-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-10 h-10 rounded-xl bg-secondary-container border border-aquatic-subtle overflow-hidden p-0.5 shrink-0 shadow-xs">
+<img alt="Suicune Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCHjUzIfG1QU0T5StFQsaPWhXXRsv3L2lPPZa78w1jAJSK48oQfpqjjzdF8mKOxz5Awr1-LS48sEU4GoI7ZFMBmhhIaCz3CfOxUrXU9wKlQqVnKwABjQWOn4_TOTN1eLmbmAoPWH_plS-7iSSdd0xkn6Gl8HmqXu8HYyliZYpJJ09Aq6YYvx-LWwbh3GAP2MbA1-b1IQoW3bJmomsw8cGtaIIuIxaNkciYZUgRzT9jY1cd4G8xGf6Fr5SvB">
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-[17px] text-primary font-extrabold tracking-tight">Suicune</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-bold tracking-wide uppercase">WATER</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary water-pulse-dot"></span>
+<span class="text-xs text-on-surface-variant font-medium">Ward 7 · Grid Normal</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button aria-label="Alerts and Notifications" class="relative w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary hover:bg-secondary-container/40 active:scale-95 transition" id="notif-btn" type="button">
+<span class="material-symbols-outlined text-[23px]">notifications</span>
+<span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-hazard-alert ring-2 ring-surface shadow-xs animate-ping"></span>
+<span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-hazard-alert ring-2 ring-surface shadow-xs"></span>
+</button>
+<button aria-label="Open profile" class="w-10 h-10 flex items-center justify-center rounded-full active:scale-95 transition p-0.5" id="user-profile-btn" type="button">
+<img alt="Elena Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRhY87RwE5DQ32uFzCvunEaaYuLWNmUDjXx0ElqSUCGSkU8FtRdfBqcqFiTv113-5BrV3cY6a7TQk23jNVUx-Bl0ToNjvga6tSoKRLUyVrcowBKmHl5hVYIg6ZIlMkUnru3k92KetiY2RJeMSIUszdfQlD8xclkeHKfBZL4rBsJ5LKaHToxwB7HFhyVWcgWhKITyCtW4sMAhGL8IJUzCguWtctglCiRNDY6Mw-JuUN">
+</button>
+</div>
+</div>
+</header>
+<!-- Interactive Toast Notification -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-xl shadow-lg bg-ocean-deep text-white text-xs font-medium flex items-center gap-2.5 transition-all duration-300 opacity-0 pointer-events-none transform -translate-y-4 border border-slate-700/60 max-w-[90%]" id="action-toast">
+<span class="material-symbols-outlined text-[18px] text-aquatic-subtle" id="toast-icon">info</span>
+<span id="toast-text">Alert triggered</span>
+</div>
+<!-- Notification Drawer / Modal Dialog -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden opacity-0 transition-opacity duration-200" id="notif-modal">
+<div class="absolute right-3 top-16 w-80 bg-surface-container-lowest rounded-2xl shadow-2xl border border-aquatic-subtle p-4 transform transition-all -translate-y-2" id="notif-content">
+<div class="flex items-center justify-between pb-3 border-b border-aquatic-subtle">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">notifications_active</span>
+<h3 class="font-title-md text-sm font-bold text-on-surface">Telemetry Alerts</h3>
+</div>
+<button class="w-7 h-7 rounded-full hover:bg-secondary-container text-on-surface-variant flex items-center justify-center" id="close-notif-btn">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="space-y-2.5 pt-3">
+<div class="p-2.5 rounded-xl bg-secondary-container/40 border border-aquatic-subtle flex gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">water_drop</span>
+<div>
+<p class="text-xs font-semibold text-on-surface">Daily conservation target reached</p>
+<p class="text-[11px] text-on-surface-variant">420 L baseline safe. Current pace 62.8%.</p>
+<span class="text-[9px] text-primary font-bold">12m ago</span>
+</div>
+</div>
+<div class="p-2.5 rounded-xl bg-hazard-tint border border-red-200 flex gap-2.5">
+<span class="material-symbols-outlined text-hazard-alert text-[18px] shrink-0 mt-0.5">warning</span>
+<div>
+<p class="text-xs font-semibold text-on-surface">Sub-meter valve ready</p>
+<p class="text-[11px] text-on-surface-variant">Diagnostic telemetry checks normal.</p>
+<span class="text-[9px] text-hazard-alert font-bold">1h ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Container -->
+<main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface" id="main-content"><!-- 1. HOME VIEW (Active by default) -->
+<div class="flex flex-col w-full px-4 py-3 space-y-4 max-w-md mx-auto" id="view-home">
+  <!-- Household Welcome & Meter Status Banner -->
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle">
+    <div class="flex items-start justify-between gap-2">
+      <div class="space-y-1">
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container border border-aquatic-subtle">
+          <span class="w-2 h-2 rounded-full bg-primary water-pulse-dot"></span>
+          <span class="text-xs font-semibold tracking-wide">Meter #AG-7429 · Flow Normal</span>
+        </div>
+        <h1 class="font-headline-lg-mobile text-[24px] leading-tight text-on-surface tracking-tight font-extrabold pt-0.5">Good morning, Elena</h1>
+        <p class="text-xs text-on-surface-variant flex items-center gap-1.5 pt-0.5">
+          <span class="material-symbols-outlined text-[16px] text-primary">group</span>
+          <span>4 Residents · Baseline Target: <strong class="text-on-surface">420 L/day</strong></span>
+        </p>
+      </div>
+      <div class="flex flex-col items-end">
+        <button aria-label="Water Eco Efficiency" class="w-10 h-10 rounded-xl bg-secondary-container border border-aquatic-subtle flex items-center justify-center text-primary hover:bg-aquatic-tint transition cursor-pointer active:scale-95 shadow-xs" id="eco-leaf-btn" onclick="showToast('Eco score: Grade A+ (Top 5% in Ward 7)', 'eco')" type="button">
+          <span class="material-symbols-outlined text-[22px]">energy_savings_leaf</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Water Consumption Central Gauge Card -->
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm relative overflow-hidden border border-aquatic-subtle">
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Today's Total Consumption</span>
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container border border-aquatic-subtle text-primary">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <span class="text-xs font-semibold">0.0 L/min (Standby)</span>
+      </div>
+    </div>
+    <div class="flex flex-col items-center justify-center my-3 relative">
+      <div class="relative w-48 h-48 flex items-center justify-center">
+        <svg class="w-full h-full -rotate-90 transform" viewBox="0 0 160 160">
+          <defs>
+            <linearGradient id="aquaticFlowGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+              <stop offset="0%" stop-color="#0284c7"></stop>
+              <stop offset="50%" stop-color="#38bdf8"></stop>
+              <stop offset="100%" stop-color="#bae6fd"></stop>
+            </linearGradient>
+            <filter height="140%" id="aquaticGlow" width="140%" x="-20%" y="-20%">
+              <feDropShadow dx="0" dy="0" flood-color="#38bdf8" flood-opacity="0.5" stdDeviation="3"></feDropShadow>
+            </filter>
+          </defs>
+          <circle cx="80" cy="80" fill="transparent" r="66" stroke="#213145" stroke-width="12"></circle>
+          <circle class="water-gauge-flow" cx="80" cy="80" fill="transparent" filter="url(#aquaticGlow)" r="66" stroke="url(#aquaticFlowGrad)" stroke-linecap="round" stroke-width="12"></circle>
+        </svg>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+          <div class="flex items-baseline justify-center">
+            <span class="font-display-lg-mobile text-[36px] font-extrabold text-on-surface tracking-tight" id="main-gauge-number">264</span>
+            <span class="text-xl font-bold text-primary ml-0.5">L</span>
+          </div>
+          <span class="text-xs text-on-surface-variant font-medium">of 420 L Target</span>
+          <div class="mt-1.5 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container border border-aquatic-subtle text-primary">
+            <span class="material-symbols-outlined text-[14px]">eco</span>
+            <span class="text-xs font-semibold">62.8% used</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-2 pt-2 grid grid-cols-2 gap-2.5 border-t border-aquatic-subtle/50">
+      <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center gap-2.5 border border-aquatic-subtle/70">
+        <div class="w-8 h-8 rounded-lg bg-secondary-container border border-aquatic-subtle flex items-center justify-center text-primary shrink-0">
+          <span class="material-symbols-outlined text-[18px]">person</span>
+        </div>
+        <div>
+          <span class="text-xs text-on-surface-variant block font-medium">Per Person</span>
+          <span class="text-base text-on-surface font-bold leading-tight">66 L</span>
+          <span class="text-[10px] text-primary font-semibold block">Benchmark: 105 L</span>
+        </div>
+      </div>
+      <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center gap-2.5 border border-aquatic-subtle/70">
+        <div class="w-8 h-8 rounded-lg bg-secondary-container border border-aquatic-subtle flex items-center justify-center text-primary shrink-0">
+          <span class="material-symbols-outlined text-[18px]">trending_down</span>
+        </div>
+        <div>
+          <span class="text-xs text-on-surface-variant block font-medium">Neighborhood</span>
+          <span class="text-base text-primary font-bold leading-tight">+18%</span>
+          <span class="text-[10px] text-primary font-semibold block">More efficient</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Stats Grid (2x2) -->
+  <section class="grid grid-cols-2 gap-2.5">
+    <div class="bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm flex flex-col justify-between border border-aquatic-subtle hover:border-primary transition cursor-pointer active:scale-98" onclick="showToast('Average Daily baseline is tracking 14% below neighborhood average.', 'calendar_month')">
+      <div class="flex items-center justify-between text-on-surface-variant">
+        <span class="text-xs font-semibold">Average Daily</span>
+        <span class="material-symbols-outlined text-[20px] text-primary">calendar_month</span>
+      </div>
+      <div class="mt-2">
+        <div class="text-[22px] leading-tight text-on-surface font-bold">310 L</div>
+        <p class="text-xs text-primary font-medium flex items-center gap-0.5 mt-0.5">
+          <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+          <span>-14% this week</span>
+        </p>
+      </div>
+    </div>
+    <div class="bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm flex flex-col justify-between border border-aquatic-subtle hover:border-primary transition cursor-pointer active:scale-98" onclick="showToast('54 Liters conserved vs historical baseline today!', 'water_drop')">
+      <div class="flex items-center justify-between text-on-surface-variant">
+        <span class="text-xs font-semibold">Water Saved</span>
+        <span class="material-symbols-outlined text-[20px] text-primary">water_drop</span>
+      </div>
+      <div class="mt-2">
+        <div class="text-[22px] leading-tight text-on-surface font-bold">54 L</div>
+        <p class="text-xs text-on-surface-variant mt-0.5 font-medium">Above standard baseline</p>
+      </div>
+    </div>
+    <div class="bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm flex flex-col justify-between border border-aquatic-subtle hover:border-primary transition cursor-pointer active:scale-98" onclick="switchNav('rewards')">
+      <div class="flex items-center justify-between text-on-surface-variant">
+        <span class="text-xs font-semibold">Eco Points</span>
+        <span class="material-symbols-outlined text-[20px] text-primary">workspace_premium</span>
+      </div>
+      <div class="mt-2">
+        <div class="text-[22px] leading-tight text-on-surface font-bold">1,420</div>
+        <p class="text-xs text-primary font-semibold flex items-center gap-0.5 mt-0.5">
+          <span class="material-symbols-outlined text-[14px]">add</span>
+          <span>45 earned today</span>
+        </p>
+      </div>
+    </div>
+    <div class="bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm flex flex-col justify-between border border-aquatic-subtle hover:border-primary transition cursor-pointer active:scale-98" onclick="switchNav('alerts')">
+      <div class="flex items-center justify-between text-on-surface-variant">
+        <span class="text-xs font-semibold">System Health</span>
+        <span class="material-symbols-outlined text-[20px] text-primary">verified_user</span>
+      </div>
+      <div class="mt-2">
+        <div class="text-[22px] leading-tight text-primary font-bold">Optimal</div>
+        <p class="text-xs text-on-surface-variant mt-0.5 font-medium">0 detected leaks</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flow Pulse Histogram -->
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle">
+    <div class="flex items-center justify-between mb-2">
+      <div>
+        <h2 class="font-title-md text-base text-on-surface font-bold">Today's Flow Pulse</h2>
+        <span class="text-xs text-on-surface-variant">Hourly aggregate · Morning peak detected</span>
+      </div>
+      <button type="button" onclick="switchNav('analytics')" class="text-xs px-2.5 py-1 rounded-full bg-secondary-container border border-aquatic-subtle text-primary font-semibold cursor-pointer active:scale-95 hover:bg-aquatic-tint transition">24h Cycle</button>
+    </div>
+    <div class="pt-4 pb-1">
+      <div class="h-28 flex items-end justify-between gap-1.5 px-1">
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+          <div class="w-full bg-secondary-container/50 rounded-t-sm border border-aquatic-subtle/50" style="height: 6%;"></div>
+          <span class="text-[10px] text-on-surface-variant">12a</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+          <div class="w-full bg-secondary-container/50 rounded-t-sm border border-aquatic-subtle/50" style="height: 4%;"></div>
+          <span class="text-[10px] text-on-surface-variant">2a</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+          <div class="w-full bg-secondary-container/60 rounded-t-sm border border-aquatic-subtle/50" style="height: 8%;"></div>
+          <span class="text-[10px] text-on-surface-variant">4a</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+          <div class="w-full bg-sky-400 rounded-t-sm border border-sky-300 water-bar-pulse" style="height: 38%; animation-delay: 0.1s;"></div>
+          <span class="text-[10px] text-on-surface-variant">6a</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+          <div class="w-full bg-primary rounded-t-sm relative group border border-sky-600 water-bar-pulse" style="height: 86%; animation-delay: 0.25s;">
+            <div class="absolute -top-5 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded bg-warning-tint text-warning-amber border border-amber-300 text-[8px] font-bold whitespace-nowrap shadow-xs">78L PEAK</div>
+          </div>
+          <span class="text-[10px] text-primary font-bold">8a</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+          <div class="w-full bg-secondary-container rounded-t-sm border border-aquatic-subtle water-bar-pulse" style="height: 24%; animation-delay: 0.4s;"></div>
+          <span class="text-[10px] text-on-surface-variant">10a</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+          <div class="w-full bg-secondary-container rounded-t-sm border border-aquatic-subtle water-bar-pulse" style="height: 20%; animation-delay: 0.55s;"></div>
+          <span class="text-[10px] text-on-surface-variant">12p</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+          <div class="w-full bg-primary rounded-t-sm border border-sky-600 water-bar-pulse" style="height: 14%; animation-delay: 0.7s;"></div>
+          <span class="text-[10px] text-primary font-bold">2p</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end opacity-45">
+          <div class="w-full bg-slate-300 rounded-t-sm border border-slate-300" style="height: 28%;"></div>
+          <span class="text-[10px] text-on-surface-variant">4p</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end opacity-45">
+          <div class="w-full bg-slate-300 rounded-t-sm border border-slate-300" style="height: 60%;"></div>
+          <span class="text-[10px] text-on-surface-variant">6p</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end opacity-45">
+          <div class="w-full bg-slate-300 rounded-t-sm border border-slate-300" style="height: 44%;"></div>
+          <span class="text-[10px] text-on-surface-variant">8p</span>
+        </div>
+      </div>
+    </div>
+    <div class="mt-3 flex items-center justify-between text-[11px] text-on-surface-variant pt-2 border-t border-aquatic-subtle/50">
+      <div class="flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-sm bg-primary"></span>
+        <span>Measured Flow</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-sm bg-slate-300"></span>
+        <span>Forecast Projection</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Utility Shortcuts -->
+  <section class="space-y-1.5">
+    <span class="text-xs uppercase tracking-wider text-on-surface-variant px-1 font-bold">Utility Shortcuts</span>
+    <div class="grid grid-cols-3 gap-2">
+      <button aria-label="Toggle Main Water Valve" class="bg-surface-container-lowest active:scale-95 transition p-3 rounded-2xl shadow-sm flex flex-col items-center text-center gap-1 border border-aquatic-subtle cursor-pointer hover:bg-surface-container-low group" id="valve-btn" type="button">
+        <div class="w-10 h-10 rounded-xl bg-secondary-container border border-aquatic-subtle text-primary flex items-center justify-center transition-colors" id="valve-icon-wrapper">
+          <span class="material-symbols-outlined text-[22px]" id="valve-icon">autorenew</span>
+        </div>
+        <span class="text-xs text-on-surface font-bold leading-tight mt-0.5">Main Valve</span>
+        <span class="text-[10px] text-primary font-semibold" id="valve-state">Open · Active</span>
+      </button>
+      <button aria-label="Report Water Alert or Leak" class="bg-surface-container-lowest active:scale-95 transition p-3 rounded-2xl shadow-sm flex flex-col items-center text-center gap-1 border border-aquatic-subtle cursor-pointer hover:bg-surface-container-low group" id="report-alert-btn" type="button" onclick="switchNav('alerts'); showToast('Opening Leak Diagnostic Wizard...', 'build');">
+        <div class="w-10 h-10 rounded-xl bg-hazard-tint border border-red-200 text-hazard-alert flex items-center justify-center transition-transform group-hover:scale-105">
+          <span class="material-symbols-outlined text-[22px]">notification_important</span>
+        </div>
+        <span class="text-xs text-on-surface font-bold leading-tight mt-0.5">Report Alert</span>
+        <span class="text-[10px] text-hazard-alert font-bold">Diagnostics</span>
+      </button>
+      <button aria-label="Go to Rainwater Harvesting" class="bg-surface-container-lowest active:scale-95 transition p-3 rounded-2xl shadow-sm flex flex-col items-center text-center gap-1 border border-aquatic-subtle cursor-pointer hover:bg-surface-container-low group" id="harvest-cistern-btn" type="button" onclick="switchNav('rainwater'); showToast('Harvest Cistern: +80 L filtered &amp; stored.', 'cloud_sync');">
+        <div class="w-10 h-10 rounded-xl bg-secondary-container border border-aquatic-subtle text-primary flex items-center justify-center transition-transform group-hover:scale-105">
+          <span class="material-symbols-outlined text-[22px]">cloud_sync</span>
+        </div>
+        <span class="text-xs text-on-surface font-bold leading-tight mt-0.5">Harvest Cistern</span>
+        <span class="text-[10px] text-primary font-bold">+80 L Logged</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Recent Activity Feed -->
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm space-y-3 border border-aquatic-subtle">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-[20px]">history_toggle_off</span>
+        <h2 class="font-title-md text-base text-on-surface font-bold">Activity Log</h2>
+      </div>
+      <button class="text-xs text-primary font-bold hover:underline cursor-pointer active:scale-95" id="view-all-logs-btn" type="button" onclick="switchNav('analytics');">View All</button>
+    </div>
+    <div class="space-y-2">
+      <div class="flex items-center justify-between gap-3 p-2.5 rounded-xl bg-surface-container-low border border-aquatic-subtle/80 hover:bg-secondary-container/40 transition">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-secondary-container border border-aquatic-subtle text-primary flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[19px]">shower</span>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold text-on-surface">Morning shower cycle</h3>
+            <p class="text-[11px] text-on-surface-variant">Primary bathroom · 7:42 AM</p>
+          </div>
+        </div>
+        <div class="text-right shrink-0">
+          <span class="text-sm font-extrabold text-on-surface">48 L</span>
+          <span class="block text-[10px] text-on-surface-variant font-medium">7.2 min</span>
+        </div>
+      </div>
+      <div class="flex items-center justify-between gap-3 p-2.5 rounded-xl bg-surface-container-low border border-aquatic-subtle/80 hover:bg-secondary-container/40 transition">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-secondary-container border border-aquatic-subtle text-primary flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[19px]">yard</span>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold text-on-surface">Drip irrigation cycle</h3>
+            <p class="text-[11px] text-on-surface-variant">North garden beds · 6:15 AM</p>
+          </div>
+        </div>
+        <div class="text-right shrink-0">
+          <span class="text-sm font-extrabold text-on-surface">22 L</span>
+          <span class="block text-[10px] text-primary font-bold">Eco-Scheduled</span>
+        </div>
+      </div>
+      <div class="flex items-center justify-between gap-3 p-2.5 rounded-xl bg-secondary-container/40 border border-aquatic-subtle hover:bg-secondary-container/70 transition">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-secondary-container border border-aquatic-subtle text-primary flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[19px]">water</span>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold text-on-secondary-container">Cistern replenished</h3>
+            <p class="text-[11px] text-on-surface-variant">Rooftop rainfall capture · 03:10 AM</p>
+          </div>
+        </div>
+        <div class="text-right shrink-0">
+          <span class="text-sm font-extrabold text-primary">+80 L</span>
+          <span class="block text-[10px] text-primary font-bold">100% Free Rain</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soil Moisture Card -->
+  <section class="bg-secondary-container/30 p-3.5 rounded-2xl flex items-center justify-between gap-3 border border-aquatic-subtle">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-secondary-container border border-aquatic-subtle text-primary flex items-center justify-center shrink-0 shadow-xs">
+        <span class="material-symbols-outlined text-[20px]">local_florist</span>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-on-surface">Soil Moisture: 68%</p>
+        <p class="text-[11px] text-on-surface-variant">Rain expected tomorrow. Delay garden sprinkler.</p>
+      </div>
+    </div>
+    <button class="px-3.5 py-1.5 rounded-xl bg-surface-container-lowest border border-aquatic-subtle text-primary text-xs font-bold shadow-xs hover:bg-secondary-container active:scale-95 transition cursor-pointer shrink-0" id="soil-hold-btn" type="button">
+      Hold
+    </button>
+  </section>
+</div>
+
+<!-- 2. ANALYTICS VIEW -->
+<div class="hidden flex flex-col w-full px-4 py-3 space-y-4 max-w-md mx-auto" id="view-analytics">
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle">
+    <div class="flex items-center justify-between mb-2">
+      <div>
+        <span class="text-[10px] font-bold text-primary tracking-wide uppercase px-2 py-0.5 rounded-full bg-secondary-container border border-aquatic-subtle">Analytics &amp; Usage</span>
+        <h2 class="font-headline-lg-mobile text-[22px] font-bold text-on-surface mt-1">Flow Diagnostics</h2>
+      </div>
+      <span class="material-symbols-outlined text-primary text-[24px]">bar_chart</span>
+    </div>
+    <p class="text-xs text-on-surface-variant">Real-time consumption telemetry across all micro-meters in Ward 7 household.</p>
+  </section>
+
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle space-y-3">
+    <div class="flex items-center justify-between">
+      <h3 class="font-title-md text-sm font-bold text-on-surface">Breakdown by Fixture</h3>
+      <span class="text-xs text-primary font-bold">Weekly Average</span>
+    </div>
+    <div class="space-y-2.5">
+      <div>
+        <div class="flex justify-between text-xs mb-1">
+          <span class="font-medium text-on-surface">Showers &amp; Bath</span>
+          <span class="font-bold text-primary">42% (110 L/day)</span>
+        </div>
+        <div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden border border-aquatic-subtle/40">
+          <div class="bg-primary h-full rounded-full" style="width: 42%"></div>
+        </div>
+      </div>
+      <div>
+        <div class="flex justify-between text-xs mb-1">
+          <span class="font-medium text-on-surface">Garden &amp; Irrigation</span>
+          <span class="font-bold text-primary">24% (63 L/day)</span>
+        </div>
+        <div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden border border-aquatic-subtle/40">
+          <div class="bg-sky-400 h-full rounded-full" style="width: 24%"></div>
+        </div>
+      </div>
+      <div>
+        <div class="flex justify-between text-xs mb-1">
+          <span class="font-medium text-on-surface">Kitchen &amp; Dishwashing</span>
+          <span class="font-bold text-primary">20% (52 L/day)</span>
+        </div>
+        <div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden border border-aquatic-subtle/40">
+          <div class="bg-secondary-container h-full rounded-full border border-aquatic-subtle" style="width: 20%"></div>
+        </div>
+      </div>
+      <div>
+        <div class="flex justify-between text-xs mb-1">
+          <span class="font-medium text-on-surface">Laundry &amp; Miscellaneous</span>
+          <span class="font-bold text-primary">14% (37 L/day)</span>
+        </div>
+        <div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden border border-aquatic-subtle/40">
+          <div class="bg-slate-300 h-full rounded-full" style="width: 14%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle space-y-3">
+    <h3 class="font-title-md text-sm font-bold text-on-surface">Historical Flow Pattern</h3>
+    <div class="grid grid-cols-4 gap-2 text-center">
+      <div class="p-2.5 rounded-xl bg-surface-container-low border border-aquatic-subtle/50">
+        <span class="text-[10px] text-on-surface-variant block">Mon</span>
+        <span class="text-sm font-bold text-on-surface">278 L</span>
+      </div>
+      <div class="p-2.5 rounded-xl bg-surface-container-low border border-aquatic-subtle/50">
+        <span class="text-[10px] text-on-surface-variant block">Tue</span>
+        <span class="text-sm font-bold text-on-surface">295 L</span>
+      </div>
+      <div class="p-2.5 rounded-xl bg-surface-container-low border border-aquatic-subtle/50">
+        <span class="text-[10px] text-on-surface-variant block">Wed</span>
+        <span class="text-sm font-bold text-on-surface">260 L</span>
+      </div>
+      <div class="p-2.5 rounded-xl bg-secondary-container border border-aquatic-subtle">
+        <span class="text-[10px] text-primary font-bold block">Today</span>
+        <span class="text-sm font-bold text-primary">264 L</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 3. ALERTS VIEW -->
+<div class="hidden flex flex-col w-full px-4 py-3 space-y-4 max-w-md mx-auto" id="view-alerts">
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle">
+    <div class="flex items-center justify-between mb-2">
+      <div>
+        <span class="text-[10px] font-bold text-hazard-alert tracking-wide uppercase px-2 py-0.5 rounded-full bg-hazard-tint border border-red-200">Sensor Health &amp; Leaks</span>
+        <h2 class="font-headline-lg-mobile text-[22px] font-bold text-on-surface mt-1">Leakage Telemetry</h2>
+      </div>
+      <span class="material-symbols-outlined text-hazard-alert text-[24px]">warning</span>
+    </div>
+    <p class="text-xs text-on-surface-variant">Smart anomaly detection active across meter AG-7429 and sub-valves.</p>
+  </section>
+
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle space-y-3">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-primary water-pulse-dot"></span>
+        <h3 class="font-title-md text-sm font-bold text-on-surface">Zero Active Leaks Detected</h3>
+      </div>
+      <span class="text-xs font-bold text-primary">Status Optimal</span>
+    </div>
+    <p class="text-xs text-on-surface-variant">No continuous trickle pressure drop has been detected in the last 72 hours.</p>
+  </section>
+
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle space-y-3">
+    <h3 class="font-title-md text-sm font-bold text-on-surface">Diagnostic Tools &amp; Actions</h3>
+    <div class="space-y-2">
+      <button type="button" onclick="showToast('Emergency Shutoff simulated successfully', 'check_circle')" class="w-full flex items-center justify-between p-3 rounded-xl bg-hazard-tint border border-red-200 text-left cursor-pointer active:scale-95 transition">
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-hazard-alert text-[20px]">power_settings_new</span>
+          <div>
+            <p class="text-xs font-bold text-on-surface">Emergency Remote Shutoff</p>
+            <p class="text-[11px] text-on-surface-variant">Instantly cut water feed to main lines</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-hazard-alert text-[18px]">arrow_forward</span>
+      </button>
+      <button type="button" onclick="showToast('Acoustic sensor scan started...', 'sensors')" class="w-full flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-aquatic-subtle text-left cursor-pointer active:scale-95 transition">
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-primary text-[20px]">sensors</span>
+          <div>
+            <p class="text-xs font-bold text-on-surface">Run Micro-Flow Acoustic Scan</p>
+            <p class="text-[11px] text-on-surface-variant">Checks hidden pipe micro-vibrations</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-primary text-[18px]">play_arrow</span>
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- 4. REWARDS VIEW -->
+<div class="hidden flex flex-col w-full px-4 py-3 space-y-4 max-w-md mx-auto" id="view-rewards">
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle">
+    <div class="flex items-center justify-between mb-2">
+      <div>
+        <span class="text-[10px] font-bold text-primary tracking-wide uppercase px-2 py-0.5 rounded-full bg-secondary-container border border-aquatic-subtle">Ward 7 Conservation</span>
+        <h2 class="font-headline-lg-mobile text-[22px] font-bold text-on-surface mt-1">Eco Rewards</h2>
+      </div>
+      <span class="material-symbols-outlined text-primary text-[24px]">workspace_premium</span>
+    </div>
+    <p class="text-xs text-on-surface-variant">Earn conservation credits and utility bill rebates by maintaining low footprint.</p>
+  </section>
+
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle space-y-3">
+    <div class="flex items-center justify-between">
+      <div>
+        <span class="text-xs text-on-surface-variant">Available Balance</span>
+        <div class="text-[28px] font-extrabold text-primary leading-tight">1,420 <span class="text-xs font-bold text-on-surface">Pts</span></div>
+      </div>
+      <div class="text-right">
+        <span class="text-xs text-on-surface-variant block">Tier Status</span>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-secondary-container text-primary font-bold text-xs border border-aquatic-subtle">Gold Guardian</span>
+      </div>
+    </div>
+    <div class="p-3 rounded-xl bg-surface-container-low border border-aquatic-subtle space-y-1.5">
+      <div class="flex justify-between text-xs font-medium">
+        <span class="text-on-surface">Progress to Platinum Tier</span>
+        <span class="text-primary font-bold">80 / 100 Pts</span>
+      </div>
+      <div class="w-full bg-slate-300 h-2 rounded-full overflow-hidden">
+        <div class="bg-primary h-full rounded-full" style="width: 80%"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle space-y-3">
+    <h3 class="font-title-md text-sm font-bold text-on-surface">Redeem Rewards</h3>
+    <div class="space-y-2">
+      <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-aquatic-subtle">
+        <div>
+          <p class="text-xs font-bold text-on-surface">$15 Utility Bill Credit</p>
+          <p class="text-[11px] text-on-surface-variant">Redeemable for next cycle billing</p>
+        </div>
+        <button type="button" onclick="showToast('Redeemed $15 Bill Credit!', 'redeem')" class="px-3 py-1.5 rounded-xl bg-primary text-white text-xs font-bold active:scale-95 transition cursor-pointer">1,000 Pts</button>
+      </div>
+      <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-aquatic-subtle">
+        <div>
+          <p class="text-xs font-bold text-on-surface">Free Smart Drip Emitter Set</p>
+          <p class="text-[11px] text-on-surface-variant">Complimentary eco hardware package</p>
+        </div>
+        <button type="button" onclick="showToast('Eco Hardware claimed!', 'local_shipping')" class="px-3 py-1.5 rounded-xl bg-secondary-container text-primary border border-aquatic-subtle text-xs font-bold active:scale-95 transition cursor-pointer">1,500 Pts</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 5. RAINWATER VIEW -->
+<div class="hidden flex flex-col w-full px-4 py-3 space-y-4 max-w-md mx-auto" id="view-rainwater">
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle">
+    <div class="flex items-center justify-between mb-2">
+      <div>
+        <span class="text-[10px] font-bold text-primary tracking-wide uppercase px-2 py-0.5 rounded-full bg-secondary-container border border-aquatic-subtle">Atmospheric Capture</span>
+        <h2 class="font-headline-lg-mobile text-[22px] font-bold text-on-surface mt-1">Rainwater Cistern</h2>
+      </div>
+      <span class="material-symbols-outlined text-primary text-[24px]">water_drop</span>
+    </div>
+    <p class="text-xs text-on-surface-variant">Rooftop runoff telemetry, storage levels, and garden irrigation diverters.</p>
+  </section>
+
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle space-y-3">
+    <div class="flex items-center justify-between">
+      <h3 class="font-title-md text-sm font-bold text-on-surface">Cistern Capacity: 800 L</h3>
+      <span class="text-xs font-bold text-primary">72% Full (576 L)</span>
+    </div>
+    <div class="w-full bg-surface-container-low h-4 rounded-full overflow-hidden border border-aquatic-subtle p-0.5">
+      <div class="bg-primary h-full rounded-full" style="width: 72%"></div>
+    </div>
+    <div class="grid grid-cols-2 gap-2 text-xs pt-1">
+      <div class="p-2.5 rounded-xl bg-surface-container-low border border-aquatic-subtle/50">
+        <span class="text-on-surface-variant block text-[10px]">Water Quality Index</span>
+        <span class="text-sm font-bold text-primary">98 / 100 Pure</span>
+      </div>
+      <div class="p-2.5 rounded-xl bg-surface-container-low border border-aquatic-subtle/50">
+        <span class="text-on-surface-variant block text-[10px]">Last Rain Capture</span>
+        <span class="text-sm font-bold text-on-surface">+80 L (03:10 AM)</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-aquatic-subtle space-y-3">
+    <h3 class="font-title-md text-sm font-bold text-on-surface">Irrigation Diverter</h3>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-secondary-container/30 border border-aquatic-subtle">
+      <div>
+        <p class="text-xs font-bold text-on-surface">Garden Sub-Feed</p>
+        <p class="text-[11px] text-on-surface-variant">Prioritizes rainwater over municipal supply</p>
+      </div>
+      <button type="button" onclick="showToast('Diverter Valve toggled.', 'sync')" class="px-3 py-1.5 rounded-xl bg-primary text-white text-xs font-bold active:scale-95 transition cursor-pointer">Active</button>
+    </div>
+  </section>
+</div></main>
+<!-- Bottom Navigation Bar - Wired with Routing / Interactive Tabs -->
+<nav class="fixed bottom-0 w-full z-40 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl border-t border-aquatic-subtle shadow-[0_-2px_12px_rgba(2,132,199,0.08)]"><div class="h-16 px-3 flex items-center justify-around max-w-md mx-auto">
+  <button class="nav-tab flex flex-col items-center justify-center gap-0.5 w-14 h-12 transition text-primary font-bold cursor-pointer active:scale-95" data-route="home" id="nav-home" onclick="switchNav('home')" type="button">
+    <div class="relative flex flex-col items-center">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px]">Home</span>
+      <span class="nav-pill absolute -bottom-1 w-5 h-0.5 rounded-full bg-primary shadow-[0_0_8px_rgba(2,132,199,0.9)]"></span>
+    </div>
+  </button>
+  <button class="nav-tab flex flex-col items-center justify-center gap-0.5 w-14 h-12 transition text-on-surface-variant hover:text-primary cursor-pointer active:scale-95" data-route="analytics" id="nav-analytics" onclick="switchNav('analytics')" type="button">
+    <div class="relative flex flex-col items-center">
+      <span class="material-symbols-outlined text-[22px]">bar_chart</span>
+      <span class="text-[11px]">Analytics</span>
+      <span class="nav-pill hidden absolute -bottom-1 w-5 h-0.5 rounded-full bg-primary shadow-[0_0_8px_rgba(2,132,199,0.9)]"></span>
+    </div>
+  </button>
+  <button class="nav-tab flex flex-col items-center justify-center gap-0.5 w-14 h-12 transition text-on-surface-variant hover:text-primary cursor-pointer active:scale-95" data-route="alerts" id="nav-alerts" onclick="switchNav('alerts')" type="button">
+    <div class="relative flex flex-col items-center">
+      <span class="material-symbols-outlined text-[22px]">warning</span>
+      <span class="text-[11px]">Alerts</span>
+      <span class="nav-pill hidden absolute -bottom-1 w-5 h-0.5 rounded-full bg-primary shadow-[0_0_8px_rgba(2,132,199,0.9)]"></span>
+    </div>
+  </button>
+  <button class="nav-tab flex flex-col items-center justify-center gap-0.5 w-14 h-12 transition text-on-surface-variant hover:text-primary cursor-pointer active:scale-95" data-route="rewards" id="nav-rewards" onclick="switchNav('rewards')" type="button">
+    <div class="relative flex flex-col items-center">
+      <span class="material-symbols-outlined text-[22px]">workspace_premium</span>
+      <span class="text-[11px]">Rewards</span>
+      <span class="nav-pill hidden absolute -bottom-1 w-5 h-0.5 rounded-full bg-primary shadow-[0_0_8px_rgba(2,132,199,0.9)]"></span>
+    </div>
+  </button>
+  <button class="nav-tab flex flex-col items-center justify-center gap-0.5 w-14 h-12 transition text-on-surface-variant hover:text-primary cursor-pointer active:scale-95" data-route="rainwater" id="nav-rainwater" onclick="switchNav('rainwater')" type="button">
+    <div class="relative flex flex-col items-center">
+      <span class="material-symbols-outlined text-[22px]">water_drop</span>
+      <span class="text-[11px]">Rainwater</span>
+      <span class="nav-pill hidden absolute -bottom-1 w-5 h-0.5 rounded-full bg-primary shadow-[0_0_8px_rgba(2,132,199,0.9)]"></span>
+    </div>
+  </button>
+</div></nav>
+<!-- Complete Inline JavaScript Micro-interactions -->
+<script>
+    // Toast Notification Utility
+    const toast = document.getElementById('action-toast');
+    const toastText = document.getElementById('toast-text');
+    const toastIcon = document.getElementById('toast-icon');
+    let toastTimeout;
+
+    function showToast(message, iconName = 'info') {
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastText.textContent = message;
+      toastIcon.textContent = iconName;
+      toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+      }, 3000);
+    }
+
+    // Navigation Tab Switching Logic
+    const tabs = document.querySelectorAll('.nav-tab');
+    function switchNav(route) {
+      tabs.forEach(tab => {
+        const isSelected = tab.dataset.route === route;
+        const pill = tab.querySelector('.nav-pill');
+        if (isSelected) {
+          tab.classList.remove('text-on-surface-variant');
+          tab.classList.add('text-primary', 'font-bold');
+          if (pill) pill.classList.remove('hidden');
+        } else {
+          tab.classList.remove('text-primary', 'font-bold');
+          tab.classList.add('text-on-surface-variant');
+          if (pill) pill.classList.add('hidden');
+        }
+      });
+
+      if (route === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        showToast('Viewing Household Dashboard', 'home');
+      } else if (route === 'analytics') {
+        showToast('Navigating to Detailed Flow Analytics...', 'bar_chart');
+      } else if (route === 'alerts') {
+        showToast('Scanning System Telemetry & Sensors...', 'warning');
+      } else if (route === 'rewards') {
+        showToast('Loading Community Eco Rewards & Tier...', 'workspace_premium');
+      } else if (route === 'rainwater') {
+        showToast('Opening Cistern & Rainwater Telemetry...', 'water_drop');
+      }
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => switchNav(tab.dataset.route));
+    });
+
+    // Main Valve Toggle Interactivity
+    const valveBtn = document.getElementById('valve-btn');
+    const valveState = document.getElementById('valve-state');
+    const valveIcon = document.getElementById('valve-icon');
+    const valveIconWrapper = document.getElementById('valve-icon-wrapper');
+    let isValveOpen = true;
+
+    if (valveBtn) {
+      valveBtn.addEventListener('click', () => {
+        isValveOpen = !isValveOpen;
+        if (!isValveOpen) {
+          valveState.textContent = 'Closed · Safety Shutoff';
+          valveState.className = 'text-[10px] text-hazard-alert font-bold';
+          valveIcon.textContent = 'lock';
+          valveIconWrapper.className = 'w-10 h-10 rounded-xl bg-hazard-tint border border-red-300 text-hazard-alert flex items-center justify-center transition-colors';
+          showToast('Main Valve Closed! Supply line isolated.', 'lock');
+        } else {
+          valveState.textContent = 'Open · Active';
+          valveState.className = 'text-[10px] text-primary font-semibold';
+          valveIcon.textContent = 'autorenew';
+          valveIconWrapper.className = 'w-10 h-10 rounded-xl bg-secondary-container border border-aquatic-subtle text-primary flex items-center justify-center transition-colors';
+          showToast('Main Valve Re-opened. Nominal pressure restored.', 'check_circle');
+        }
+      });
+    }
+
+    // Report Alert Button
+    const reportAlertBtn = document.getElementById('report-alert-btn');
+    if (reportAlertBtn) {
+      reportAlertBtn.addEventListener('click', () => {
+        switchNav('alerts');
+        showToast('Opening Leak Diagnostic Wizard...', 'build');
+      });
+    }
+
+    // Harvest Cistern Button
+    const harvestCisternBtn = document.getElementById('harvest-cistern-btn');
+    if (harvestCisternBtn) {
+      harvestCisternBtn.addEventListener('click', () => {
+        switchNav('rainwater');
+        showToast('Harvest Cistern: +80 L filtered & stored.', 'cloud_sync');
+      });
+    }
+
+    // Soil Moisture Hold Button Toggle
+    const soilHoldBtn = document.getElementById('soil-hold-btn');
+    let isHolding = false;
+    if (soilHoldBtn) {
+      soilHoldBtn.addEventListener('click', () => {
+        isHolding = !isHolding;
+        if (isHolding) {
+          soilHoldBtn.textContent = 'Holding (24h)';
+          soilHoldBtn.className = 'px-3.5 py-1.5 rounded-xl bg-primary text-white border border-primary text-xs font-bold shadow-xs active:scale-95 transition cursor-pointer shrink-0';
+          showToast('Garden sprinkler schedule delayed 24 hours.', 'done');
+        } else {
+          soilHoldBtn.textContent = 'Hold';
+          soilHoldBtn.className = 'px-3.5 py-1.5 rounded-xl bg-surface-container-lowest border border-aquatic-subtle text-primary text-xs font-bold shadow-xs hover:bg-secondary-container active:scale-95 transition cursor-pointer shrink-0';
+          showToast('Auto-irrigation schedule resumed.', 'play_arrow');
+        }
+      });
+    }
+
+    // Notifications Drawer Toggle
+    const notifBtn = document.getElementById('notif-btn');
+    const notifModal = document.getElementById('notif-modal');
+    const closeNotifBtn = document.getElementById('close-notif-btn');
+    const notifContent = document.getElementById('notif-content');
+
+    function openModal() {
+      notifModal.classList.remove('hidden');
+      setTimeout(() => {
+        notifModal.classList.remove('opacity-0');
+        notifContent.classList.remove('-translate-y-2');
+      }, 10);
+    }
+    function closeModal() {
+      notifModal.classList.add('opacity-0');
+      notifContent.classList.add('-translate-y-2');
+      setTimeout(() => {
+        notifModal.classList.add('hidden');
+      }, 200);
+    }
+
+    if (notifBtn) notifBtn.addEventListener('click', openModal);
+    if (closeNotifBtn) closeNotifBtn.addEventListener('click', closeModal);
+    if (notifModal) {
+      notifModal.addEventListener('click', (e) => {
+        if (e.target === notifModal) closeModal();
+      });
+    }
+
+    // View All Activity Logs
+    const viewAllLogsBtn = document.getElementById('view-all-logs-btn');
+    if (viewAllLogsBtn) {
+      viewAllLogsBtn.addEventListener('click', () => {
+        switchNav('analytics');
+      });
+    }
+
+    // Profile & Eco Leaf Micro Actions
+    const ecoLeafBtn = document.getElementById('eco-leaf-btn');
+    if (ecoLeafBtn) {
+      ecoLeafBtn.addEventListener('click', () => {
+        showToast('Eco score: Grade A+ (Top 5% in Ward 7)', 'eco');
+      });
+    }
+
+    const userProfileBtn = document.getElementById('user-profile-btn');
+    if (userProfileBtn) {
+      userProfileBtn.addEventListener('click', () => {
+        showToast('Elena Vance · Account AG-7429 Verified', 'verified');
+      });
+    }
+  </script>
+
+
+
+
+</body></html>

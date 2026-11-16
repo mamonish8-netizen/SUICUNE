@@ -1,0 +1,837 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AquaGuard AI - Usage Analytics</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Manrope & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "text-primary": "#0f172a",
+          "on-secondary-fixed-variant": "#0369a1",
+          "tertiary-container": "#0369a1",
+          "warning-amber": "#d97706",
+          "surface-container-highest": "#d0e2ff",
+          "secondary": "#38bdf8",
+          "on-primary-container": "#ffffff",
+          "hazard-tint": "#ffe4e6",
+          "on-tertiary-fixed-variant": "#004b74",
+          "on-secondary-container": "#0369a1",
+          "surface-container-lowest": "#ffffff",
+          "outline": "#64748b",
+          "on-surface-variant": "#475569",
+          "primary-fixed-dim": "#93ccff",
+          "tertiary-fixed": "#cde5ff",
+          "surface-bright": "#f8f9ff",
+          "text-muted": "#64748b",
+          "tertiary": "#0369a1",
+          "on-primary-fixed-variant": "#004b73",
+          "on-surface": "#0f172a",
+          "surface-variant": "#e0edff",
+          "secondary-fixed": "#e0f2fe",
+          "surface-container-high": "#d0e2ff",
+          "secondary-container": "#e0f2fe",
+          "aquatic-subtle": "#bae6fd",
+          "inverse-on-surface": "#f0f4fc",
+          "ocean-deep": "#0f172a",
+          "outline-variant": "#bae6fd",
+          "primary-fixed": "#e0f2fe",
+          "background": "#f8f9ff",
+          "aquatic-primary": "#0284c7",
+          "inverse-surface": "#1e293b",
+          "border-active": "#bae6fd",
+          "surface-container-low": "#eff4ff",
+          "on-secondary": "#ffffff",
+          "on-secondary-fixed": "#0369a1",
+          "on-tertiary-fixed": "#001d32",
+          "status-optimal": "#0284c7",
+          "surface-container": "#e0edff",
+          "on-error-container": "#93000a",
+          "text-secondary": "#475569",
+          "on-background": "#0f172a",
+          "surface": "#f8f9ff",
+          "canvas-base": "#f8fafc",
+          "border-subtle": "#e2e8f0",
+          "surface-dim": "#cbdbf5",
+          "on-primary": "#ffffff",
+          "primary": "#0284c7",
+          "tertiary-fixed-dim": "#94ccff",
+          "on-primary-fixed": "#001d31",
+          "error": "#ba1a1a",
+          "inverse-primary": "#93ccff",
+          "primary-container": "#0369a1",
+          "on-error": "#ffffff",
+          "hazard-alert": "#e11d48",
+          "warning-tint": "#fef3c7",
+          "ocean-mid": "#0369a1",
+          "error-container": "#ffdad6",
+          "on-tertiary": "#ffffff",
+          "secondary-fixed-dim": "#bae6fd",
+          "surface-tint": "#0284c7",
+          "surface-clean": "#ffffff",
+          "aquatic-tint": "#e0f2fe",
+          "on-tertiary-container": "#fdfcff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "fontFamily": {
+          "title-md": ["Manrope", "sans-serif"],
+          "headline-lg-mobile": ["Manrope", "sans-serif"],
+          "display-lg": ["Manrope", "sans-serif"],
+          "label-md": ["Inter", "sans-serif"],
+          "label-lg": ["Inter", "sans-serif"],
+          "headline-lg": ["Manrope", "sans-serif"],
+          "display-lg-mobile": ["Manrope", "sans-serif"],
+          "body-sm": ["Inter", "sans-serif"],
+          "body-md": ["Inter", "sans-serif"],
+          "headline-md": ["Manrope", "sans-serif"],
+          "body-lg": ["Inter", "sans-serif"],
+          "label-sm": ["Inter", "sans-serif"],
+          "headline-sm": ["Manrope", "sans-serif"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
+    user-select: none;
+  }
+  body {
+    min-height: max(884px, 100dvh);
+  }
+  .bar-transition {
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
+</head>
+<body class="bg-[#f1f5f9] text-on-surface antialiased flex justify-center selection:bg-secondary-container selection:text-primary min-h-screen">
+<!-- Mobile Container Wrapper -->
+<div class="w-full max-w-md bg-surface flex flex-col min-h-screen shadow-2xl relative border-x border-outline-variant/40">
+<!-- Top App Header -->
+<header class="fixed top-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(2,132,199,0.06)] border-b border-outline-variant/40 max-w-md">
+<div class="h-16 px-4 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="flex items-center justify-center w-9 h-9 rounded-lg bg-surface-container-low border border-outline-variant overflow-hidden p-0.5 shrink-0">
+<img alt="Suicune Logo" class="w-8 h-8 rounded-full object-cover shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrCHjUzIfG1QU0T5StFQsaPWhXXRsv3L2lPPZa78w1jAJSK48oQfpqjjzdF8mKOxz5Awr1-LS48sEU4GoI7ZFMBmhhIaCz3CfOxUrXU9wKlQqVnKwABjQWOn4_TOTN1eLmbmAoPWH_plS-7iSSdd0xkn6Gl8HmqXu8HYyliZYpJJ09Aq6YYvx-LWwbh3GAP2MbA1-b1IQoW3bJmomsw8cGtaIIuIxaNkciYZUgRzT9jY1cd4G8xGf6Fr5SvB">
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-base text-primary font-bold tracking-tight">Suicune</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-secondary-container text-primary font-semibold tracking-wider">WATER</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="text-label-sm text-on-surface-variant text-[11px]">Ward 7 · Grid Normal</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Alerts" class="relative w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" id="btn-notifications" type="button">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-error ring-2 ring-surface"></span>
+</button>
+<button aria-label="Open profile" class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer" type="button">
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcTPW_gi3MMOJTNrFNLIK_JfbrvP799XajA8MWDn-MjQmNklPYMFwjVUDwXRYCH43ppTs0iXCodGkQcOwH7qI-Rur6ReDASXMC10bF5uFLchFWgVo38R9PwkLRYhKhzHc0A2e2MgEhyb_Vb9u8_2kj-T5jY4q89HiF1iE9Xq0pWOy-mLsqmMJIs9YDv4QVD5rbo5Rb49R8ztOMTt27-pA7ra7WwF5lOulzcenI-85x">
+</button>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Content -->
+<main class="flex-1 px-4 py-5 space-y-6 pb-28 pt-20">
+<!-- Section 1: Time Period Selector -->
+<section>
+<div class="flex h-11 items-center justify-center rounded-xl bg-surface-container-low p-1 shadow-inner border border-outline-variant/60"><button class="tab-btn flex-1 h-full flex items-center justify-center rounded-lg px-2 text-on-surface-variant text-xs font-medium transition-all duration-200 active:scale-95 cursor-pointer" data-period="Day" type="button"><span>Day</span></button><button class="tab-btn flex-1 h-full flex items-center justify-center rounded-lg px-2 bg-surface-container-lowest text-primary font-semibold shadow-sm text-xs transition-all duration-200 active:scale-95 cursor-pointer" data-period="Week" type="button"><span>Week</span></button><button class="tab-btn flex-1 h-full flex items-center justify-center rounded-lg px-2 text-on-surface-variant text-xs font-medium transition-all duration-200 active:scale-95 cursor-pointer" data-period="Month" type="button"><span>Month</span></button><button class="tab-btn flex-1 h-full flex items-center justify-center rounded-lg px-2 text-on-surface-variant text-xs font-medium transition-all duration-200 active:scale-95 cursor-pointer" data-period="Year" type="button"><span>Year</span></button></div>
+</section>
+<!-- Section 2: Key Comparison Overview Card -->
+<section class="rounded-2xl bg-surface-container-lowest border border-outline-variant/60 p-5 shadow-sm relative overflow-hidden">
+<div class="absolute -right-10 -bottom-10 w-36 h-36 rounded-full bg-secondary-container/60 blur-2xl pointer-events-none"></div>
+<div class="flex justify-between items-start mb-3">
+<div>
+<span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold" id="metric-period-label">Total Weekly Consumption</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="text-3xl font-bold text-on-surface" id="metric-total-value">2,180</span>
+<span class="text-lg font-semibold text-primary">Litres</span>
+</div>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-secondary-container text-primary font-bold text-xs border border-outline-variant" id="metric-variance-pill">
+<span class="material-symbols-outlined text-sm font-bold" id="variance-icon">trending_down</span>
+<span id="variance-text">-12.4%</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant mb-4" id="metric-subtext">
+        Saved <span class="font-semibold text-primary">310 L</span> compared to previous week
+      </p>
+<!-- Divider -->
+<div class="border-t border-outline-variant/50 my-4"></div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant/50">
+<div class="flex items-center gap-1.5 text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-base text-primary">water_drop</span>
+<span class="text-xs">Daily Average</span>
+</div>
+<div class="text-lg font-bold text-on-surface"><span id="metric-daily-val">311</span> <span class="text-xs font-normal text-on-surface-variant">L/day</span></div>
+<div class="text-[11px] text-primary mt-1 flex items-center gap-1 font-medium">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary"></span>
+            Target Baseline: 420 L
+          </div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant/50">
+<div class="flex items-center gap-1.5 text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-base text-primary">group</span>
+<span class="text-xs">Per-Person</span>
+</div>
+<div class="text-lg font-bold text-on-surface"><span id="metric-person-val">77.8</span> <span class="text-xs font-normal text-on-surface-variant">L/day</span></div>
+<div class="text-[11px] text-primary mt-1 flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+            Within optimal tier
+          </div>
+</div>
+</div>
+</section>
+<!-- Section 3: Interactive Weekly Consumption Trend Chart -->
+<section class="rounded-2xl bg-surface-container-lowest border border-outline-variant/60 p-5 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h2 class="text-base font-bold text-on-surface" id="chart-heading">Weekly Trend</h2>
+<p class="text-xs text-on-surface-variant" id="chart-subheading">Daily volume with 420 L baseline marker</p>
+</div>
+<div class="flex items-center gap-3 text-xs">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary"></span>
+<span class="text-on-surface-variant font-medium">Optimal</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-warning-amber"></span>
+<span class="text-on-surface-variant font-medium">Spike</span>
+</div>
+</div>
+</div>
+<!-- Custom Bar Chart Container -->
+<div class="w-full relative pt-2">
+<!-- Baseline target line label -->
+<div class="absolute top-[28%] left-0 right-0 flex items-center z-10 pointer-events-none" id="baseline-line-container">
+<div class="w-full border-t border-dashed border-primary/50"></div>
+<span class="bg-secondary-container text-primary text-[10px] font-bold px-1.5 py-0.5 rounded border border-outline-variant ml-1 whitespace-nowrap">Baseline 420L</span>
+</div>
+<div class="h-44 w-full flex items-end justify-between gap-2 pt-6 pb-2 px-1" id="chart-bars-container">
+<!-- Mon: 290L -->
+<div class="flex flex-col items-center flex-1 h-full justify-end group cursor-pointer">
+<span class="text-[10px] text-on-surface-variant mb-1 group-hover:text-primary font-medium bar-val">290L</span>
+<div class="w-full bg-surface-container-low rounded-t-md h-full flex items-end overflow-hidden max-w-[28px]">
+<div class="w-full bg-primary rounded-t-md bar-transition" style="height: 58%;"></div>
+</div>
+<span class="text-xs text-on-surface font-medium mt-2 bar-lbl">M</span>
+</div>
+<!-- Tue: 310L -->
+<div class="flex flex-col items-center flex-1 h-full justify-end group cursor-pointer">
+<span class="text-[10px] text-on-surface-variant mb-1 group-hover:text-primary font-medium bar-val">310L</span>
+<div class="w-full bg-surface-container-low rounded-t-md h-full flex items-end overflow-hidden max-w-[28px]">
+<div class="w-full bg-primary rounded-t-md bar-transition" style="height: 62%;"></div>
+</div>
+<span class="text-xs text-on-surface font-medium mt-2 bar-lbl">T</span>
+</div>
+<!-- Wed: 275L -->
+<div class="flex flex-col items-center flex-1 h-full justify-end group cursor-pointer">
+<span class="text-[10px] text-on-surface-variant mb-1 group-hover:text-primary font-medium bar-val">275L</span>
+<div class="w-full bg-surface-container-low rounded-t-md h-full flex items-end overflow-hidden max-w-[28px]">
+<div class="w-full bg-primary rounded-t-md bar-transition" style="height: 55%;"></div>
+</div>
+<span class="text-xs text-on-surface font-medium mt-2 bar-lbl">W</span>
+</div>
+<!-- Thu: 330L -->
+<div class="flex flex-col items-center flex-1 h-full justify-end group cursor-pointer">
+<span class="text-[10px] text-on-surface-variant mb-1 group-hover:text-primary font-medium bar-val">330L</span>
+<div class="w-full bg-surface-container-low rounded-t-md h-full flex items-end overflow-hidden max-w-[28px]">
+<div class="w-full bg-primary rounded-t-md bar-transition" style="height: 66%;"></div>
+</div>
+<span class="text-xs text-on-surface font-medium mt-2 bar-lbl">T</span>
+</div>
+<!-- Fri: 305L -->
+<div class="flex flex-col items-center flex-1 h-full justify-end group cursor-pointer">
+<span class="text-[10px] text-on-surface-variant mb-1 group-hover:text-primary font-medium bar-val">305L</span>
+<div class="w-full bg-surface-container-low rounded-t-md h-full flex items-end overflow-hidden max-w-[28px]">
+<div class="w-full bg-primary rounded-t-md bar-transition" style="height: 61%;"></div>
+</div>
+<span class="text-xs text-on-surface font-medium mt-2 bar-lbl">F</span>
+</div>
+<!-- Sat: 505L (SPIKE ABOVE BASELINE) -->
+<div class="flex flex-col items-center flex-1 h-full justify-end group cursor-pointer relative">
+<span class="text-[10px] font-bold text-warning-amber mb-1 bar-val">505L</span>
+<div class="w-full bg-surface-container-low rounded-t-md h-full flex items-end overflow-hidden max-w-[28px] ring-2 ring-warning-amber/50 ring-offset-1">
+<div class="w-full flex flex-col justify-end h-[96%] bar-transition">
+<div class="w-full bg-warning-amber rounded-t-md" style="height: 25%;"></div>
+<div class="w-full bg-primary" style="height: 75%;"></div>
+</div>
+</div>
+<span class="text-xs text-warning-amber font-bold mt-2 bar-lbl">S</span>
+</div>
+<!-- Sun: 165L -->
+<div class="flex flex-col items-center flex-1 h-full justify-end group cursor-pointer">
+<span class="text-[10px] text-on-surface-variant mb-1 group-hover:text-primary font-medium bar-val">165L</span>
+<div class="w-full bg-surface-container-low rounded-t-md h-full flex items-end overflow-hidden max-w-[28px]">
+<div class="w-full bg-primary rounded-t-md bar-transition" style="height: 35%;"></div>
+</div>
+<span class="text-xs text-on-surface font-medium mt-2 bar-lbl">S</span>
+</div>
+</div>
+</div>
+<div class="mt-3 p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between text-xs text-on-surface-variant border border-outline-variant/50" id="chart-alert-banner">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-warning-amber"></span>
+<span class="font-medium" id="alert-banner-text">Saturday Laundry Spike Alert</span>
+</div>
+<span class="font-bold text-warning-amber" id="alert-banner-val">+85 L over baseline</span>
+</div>
+</section>
+<!-- Section 4: AI Conservation Insight -->
+<section class="rounded-2xl bg-aquatic-tint border border-outline-variant p-4 shadow-sm relative overflow-hidden">
+<div class="flex items-start gap-3">
+<div class="w-9 h-9 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-xl">lightbulb</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-base font-bold text-primary">AI Conservation Insight</h3>
+<span class="text-[10px] bg-primary text-on-primary px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider">Active</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+            Saturday laundry runs caused an <strong class="text-warning-amber font-semibold">85 L spike</strong>. Running full eco-loads can save up to <strong class="text-on-surface font-semibold">25 L per cycle</strong>.
+          </p>
+<div class="pt-2">
+<button class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline active:scale-95 transition-transform cursor-pointer" id="btn-eco-schedule" type="button">
+<span>Configure Eco Schedule</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Time-of-Day Consumption Breakdown -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-base font-bold text-on-surface">Time-of-Day Dynamics</h2>
+<p class="text-xs text-on-surface-variant">Diurnal usage distribution pattern</p>
+</div>
+<span class="text-xs font-semibold text-primary bg-secondary-container px-2.5 py-1 rounded-full border border-outline-variant">24h Cycle</span>
+</div>
+<div class="grid grid-cols-1 gap-2.5">
+<!-- Morning -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/60 hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">wb_twilight</span>
+</div>
+<div>
+<h4 class="text-xs font-semibold text-on-surface">Morning</h4>
+<span class="text-[11px] text-on-surface-variant">6:00 AM – 12:00 PM • Showers, cooking</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-on-surface">840 L</span>
+<span class="block text-xs text-primary font-semibold">38%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 38%;"></div>
+</div>
+</div>
+<!-- Afternoon -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/60 hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">light_mode</span>
+</div>
+<div>
+<h4 class="text-xs font-semibold text-on-surface">Afternoon</h4>
+<span class="text-[11px] text-on-surface-variant">12:00 PM – 5:00 PM • Dishwasher, general</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-on-surface">320 L</span>
+<span class="block text-xs text-secondary font-semibold">15%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 15%;"></div>
+</div>
+</div>
+<!-- Evening -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/60 hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-ocean-mid">
+<span class="material-symbols-outlined text-lg">wb_twilight</span>
+</div>
+<div>
+<h4 class="text-xs font-semibold text-on-surface">Evening</h4>
+<span class="text-[11px] text-on-surface-variant">5:00 PM – 10:00 PM • Cooking, laundry, garden</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-on-surface">880 L</span>
+<span class="block text-xs text-ocean-mid font-semibold">40%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden">
+<div class="bg-ocean-mid h-full rounded-full" style="width: 40%;"></div>
+</div>
+</div>
+<!-- Night -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/60 hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-lg">bedtime</span>
+</div>
+<div>
+<h4 class="text-xs font-semibold text-on-surface">Night</h4>
+<span class="text-[11px] text-on-surface-variant">10:00 PM – 6:00 AM • Normal baseline / standby</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-on-surface">140 L</span>
+<span class="block text-xs text-slate-400 font-semibold">7%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden">
+<div class="bg-slate-400 h-full rounded-full" style="width: 7%;"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: Fixture-level Water Distribution -->
+<section class="rounded-2xl bg-surface-container-lowest border border-outline-variant/60 p-5 shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-base font-bold text-on-surface">Fixture-Level Breakdown</h2>
+<p class="text-xs text-on-surface-variant">Monitored endpoint consumption</p>
+</div>
+<span class="text-xs text-primary font-semibold px-2 py-0.5 rounded-full bg-secondary-container">4 Zones</span>
+</div>
+<!-- Multi-segment Progress Bar -->
+<div class="h-3.5 w-full bg-surface-container-low rounded-full overflow-hidden flex gap-0.5 p-0.5 border border-outline-variant/60">
+<div class="bg-[#0284c7] h-full rounded-l-full" style="width: 42%;" title="Bathroom: 42%"></div>
+<div class="bg-[#38bdf8] h-full" style="width: 24%;" title="Kitchen: 24%"></div>
+<div class="bg-[#7dd3fc] h-full" style="width: 18%;" title="Laundry: 18%"></div>
+<div class="bg-[#bae6fd] h-full rounded-r-full" style="width: 16%;" title="Garden: 16%"></div>
+</div>
+<!-- Fixture List -->
+<div class="space-y-3 pt-1">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-2.5">
+<div class="w-3 h-3 rounded-full bg-[#0284c7] shrink-0"></div>
+<span class="text-on-surface font-medium">Bathroom &amp; Showers</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-on-surface-variant">915 L</span>
+<span class="font-bold text-on-surface w-10 text-right">42%</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-2.5">
+<div class="w-3 h-3 rounded-full bg-[#38bdf8] shrink-0"></div>
+<span class="text-on-surface font-medium">Kitchen &amp; Drinking</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-on-surface-variant">523 L</span>
+<span class="font-bold text-on-surface w-10 text-right">24%</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-2.5">
+<div class="w-3 h-3 rounded-full bg-[#7dd3fc] shrink-0"></div>
+<span class="text-on-surface font-medium">Laundry &amp; Cleaning</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-on-surface-variant">392 L</span>
+<span class="font-bold text-on-surface w-10 text-right">18%</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-2.5">
+<div class="w-3 h-3 rounded-full bg-[#bae6fd] shrink-0"></div>
+<div>
+<span class="text-on-surface font-medium">Garden &amp; Outdoor</span>
+<span class="block text-[11px] text-primary italic">partially offset by rainwater</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-on-surface-variant">350 L</span>
+<span class="font-bold text-on-surface w-10 text-right">16%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 7: Rainwater Harvesting Summary Widget -->
+<div class="rounded-2xl bg-surface-container-low border border-outline-variant/60 p-4 flex items-center gap-4 shadow-sm hover:border-primary/50 transition-all cursor-pointer group active:scale-95" id="rainwater-card-link">
+<div class="w-14 h-14 rounded-xl bg-surface-container-lowest shrink-0 overflow-hidden relative border border-outline-variant">
+<img alt="Rainwater harvesting cistern and indoor botanical plant" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ2rz816baOySd5alBiBdU3x_ikQAwlYFESimv6jH2HfOwjwHIcfDlAce0PxB840jRnbg_qb00CGr2PFnFcurlj5ZlljXBX_ZxY8LLPL6FIgRpkvBv-UQ_v9Sptep5ROAUsZ0t5VDKIttz3GnDKzGRqJZrq6SnPHznGipubiz71FU674R_8vBG-8rrgmlsAtcyq1J9lN6tZN-RVTndNtxFYEe9MyHiH0Ovk891Y_an">
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h4 class="text-xs font-bold text-on-surface group-hover:text-primary transition-colors">Rainwater Harvesting Active</h4>
+<span class="text-[10px] font-bold text-primary bg-secondary-container px-1.5 py-0.5 rounded">84%</span>
+</div>
+<span class="material-symbols-outlined text-primary text-base group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-0.5">Cistern is currently at 84% capacity. Estimated 190 L available for upcoming garden cycles.</p>
+</div>
+</div>
+</main>
+<!-- Eco Schedule Modal Dialog -->
+<div aria-modal="true" class="fixed inset-0 bg-ocean-deep/50 backdrop-blur-sm z-50 flex items-end justify-center hidden" id="eco-schedule-modal" role="dialog">
+<div class="bg-surface rounded-t-2xl max-w-md w-full p-5 border-t border-outline-variant/60 shadow-2xl space-y-4 animate-in slide-in-from-bottom duration-200">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/40">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-secondary-container text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">nest_eco_leaf</span>
+</div>
+<h3 class="text-base font-bold text-on-surface">Configure Eco Schedule</h3>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface cursor-pointer" id="btn-close-modal" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Automatically stagger laundry cycles during off-peak hours and utilize harvested cistern reserves to eliminate usage spikes.</p>
+<div class="space-y-2.5 pt-1">
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest border border-outline-variant/60 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl">local_laundry_service</span>
+<div>
+<div class="text-xs font-semibold text-on-surface">Smart Eco-Wash Staggering</div>
+<div class="text-[11px] text-on-surface-variant">Limit to 2 full loads per weekend morning</div>
+</div>
+</div>
+<input checked="" class="w-4 h-4 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox">
+</label>
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest border border-outline-variant/60 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl">notifications_active</span>
+<div>
+<div class="text-xs font-semibold text-on-surface">Peak Consumption Alert</div>
+<div class="text-[11px] text-on-surface-variant">Alert phone when approaching 350 L daily</div>
+</div>
+</div>
+<input checked="" class="w-4 h-4 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox">
+</label>
+</div>
+<div class="flex gap-2 pt-2">
+<button class="flex-1 py-2.5 rounded-xl border border-outline-variant text-xs font-semibold text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" id="btn-cancel-schedule" type="button">Dismiss</button>
+<button class="flex-1 py-2.5 rounded-xl bg-primary text-on-primary text-xs font-semibold hover:bg-ocean-mid transition-colors shadow-sm cursor-pointer" id="btn-save-schedule" type="button">Apply Schedule</button>
+</div>
+</div>
+</div>
+<!-- Rainwater Cistern Modal -->
+<div aria-modal="true" class="fixed inset-0 bg-ocean-deep/50 backdrop-blur-sm z-50 flex items-end justify-center hidden" id="cistern-details-modal" role="dialog">
+<div class="bg-surface rounded-t-2xl max-w-md w-full p-5 border-t border-outline-variant/60 shadow-2xl space-y-4">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/40">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-secondary-container text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">water_drop</span>
+</div>
+<h3 class="text-base font-bold text-on-surface">Rainwater Cistern Status</h3>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface cursor-pointer" id="btn-close-cistern-modal" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<div class="bg-aquatic-tint rounded-xl p-4 border border-outline-variant text-center space-y-2">
+<div class="text-2xl font-bold text-primary">84% Capacity</div>
+<div class="text-xs text-on-surface-variant">Current reserve: <strong>1,260 Litres</strong> of 1,500 L total</div>
+<div class="w-full bg-surface-container-lowest h-3 rounded-full overflow-hidden p-0.5 border border-outline-variant">
+<div class="bg-primary h-full rounded-full" style="width: 84%;"></div>
+</div>
+</div>
+<div class="text-xs text-on-surface-variant space-y-2">
+<div class="flex justify-between py-1 border-b border-outline-variant/40">
+<span>Target Garden Offsets:</span>
+<span class="font-semibold text-on-surface">190 L / cycle</span>
+</div>
+<div class="flex justify-between py-1 border-b border-outline-variant/40">
+<span>Inflow Filtration Purity:</span>
+<span class="font-semibold text-primary">99.2% Optimal</span>
+</div>
+<div class="flex justify-between py-1">
+<span>Next Forecast Precipitation:</span>
+<span class="font-semibold text-on-surface">Tomorrow 4:00 PM (+220 L)</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-primary text-on-primary text-xs font-semibold hover:bg-ocean-mid transition-colors shadow-sm cursor-pointer" id="btn-confirm-cistern" type="button">Done</button>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 max-w-xs w-full px-4 hidden pointer-events-none transition-all duration-300" id="action-toast">
+<div class="bg-ocean-deep text-on-primary text-xs py-2.5 px-3.5 rounded-lg shadow-xl flex items-center justify-between gap-2 border border-outline-variant/40">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-aquatic-subtle text-base">check_circle</span>
+<span id="toast-message">Eco Schedule applied successfully!</span>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto w-full z-40 pb-safe bg-surface/95 backdrop-blur-xl border-t border-outline-variant shadow-[0_-2px_12px_rgba(2,132,199,0.08)]">
+<div class="h-16 px-2 flex items-center justify-around"><a id="nav-home-btn" class="nav-item flex flex-col items-center justify-center gap-0.5 w-14 h-12 text-on-surface-variant hover:text-primary active:scale-95 transition-all duration-200 cursor-pointer" href="#"><span class="material-symbols-outlined text-[22px]">home</span><span class="text-[11px] font-medium">Home</span></a><a id="nav-analytics-btn" aria-current="page" class="nav-item flex flex-col items-center justify-center gap-0.5 w-14 h-12 text-primary font-semibold active:scale-95 transition-all duration-200 cursor-pointer" href="#"><div class="relative flex flex-col items-center"><span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings: 'FILL' 1;">bar_chart</span><span class="text-[11px] text-primary font-semibold">Analytics</span><span class="absolute -bottom-1 w-5 h-0.5 rounded-full bg-primary"></span></div></a><a id="nav-alerts-btn" class="nav-item flex flex-col items-center justify-center gap-0.5 w-14 h-12 text-on-surface-variant hover:text-primary active:scale-95 transition-all duration-200 cursor-pointer" href="#"><span class="material-symbols-outlined text-[22px]">warning</span><span class="text-[11px] font-medium">Alerts</span></a><a id="nav-rewards-btn" class="nav-item flex flex-col items-center justify-center gap-0.5 w-14 h-12 text-on-surface-variant hover:text-primary active:scale-95 transition-all duration-200 cursor-pointer" href="#"><span class="material-symbols-outlined text-[22px]">workspace_premium</span><span class="text-[11px] font-medium">Rewards</span></a><a id="nav-rainwater-btn" class="nav-item flex flex-col items-center justify-center gap-0.5 w-14 h-12 text-on-surface-variant hover:text-primary active:scale-95 transition-all duration-200 cursor-pointer" href="#"><span class="material-symbols-outlined text-[22px]">water_drop</span><span class="text-[11px] font-medium">Rainwater</span></a></div>
+</nav>
+</div>
+<!-- Interactive Dynamic Logic -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Dataset for time periods
+    const dataByPeriod = {
+      Day: {
+        label: "Total Daily Consumption",
+        total: "285",
+        variance: "-4.2%",
+        varianceUp: false,
+        subtext: 'Saved <span class="font-semibold text-primary">12 L</span> compared to yesterday',
+        dailyVal: "285",
+        personVal: "71.2",
+        chartHeading: "Today's Hourly Trend",
+        chartSub: "Hourly volume with 20 L/hr baseline marker",
+        baselineText: "Baseline 20L/h",
+        bars: [
+          { val: "12L", lbl: "00-04", height: "30%", isSpike: false },
+          { val: "48L", lbl: "04-08", height: "80%", isSpike: false },
+          { val: "62L", lbl: "08-12", height: "95%", isSpike: true, spikeRatio: "25%" },
+          { val: "38L", lbl: "12-16", height: "60%", isSpike: false },
+          { val: "55L", lbl: "16-20", height: "88%", isSpike: false },
+          { val: "42L", lbl: "20-22", height: "68%", isSpike: false },
+          { val: "28L", lbl: "22-24", height: "45%", isSpike: false }
+        ],
+        alertTitle: "Morning Peak Alert (9:30 AM)",
+        alertVal: "+18 L over hourly baseline"
+      },
+      Week: {
+        label: "Total Weekly Consumption",
+        total: "2,180",
+        variance: "-12.4%",
+        varianceUp: false,
+        subtext: 'Saved <span class="font-semibold text-primary">310 L</span> compared to previous week',
+        dailyVal: "311",
+        personVal: "77.8",
+        chartHeading: "Weekly Trend",
+        chartSub: "Daily volume with 420 L baseline marker",
+        baselineText: "Baseline 420L",
+        bars: [
+          { val: "290L", lbl: "M", height: "58%", isSpike: false },
+          { val: "310L", lbl: "T", height: "62%", isSpike: false },
+          { val: "275L", lbl: "W", height: "55%", isSpike: false },
+          { val: "330L", lbl: "T", height: "66%", isSpike: false },
+          { val: "305L", lbl: "F", height: "61%", isSpike: false },
+          { val: "505L", lbl: "S", height: "96%", isSpike: true, spikeRatio: "25%" },
+          { val: "165L", lbl: "S", height: "35%", isSpike: false }
+        ],
+        alertTitle: "Saturday Laundry Spike Alert",
+        alertVal: "+85 L over baseline"
+      },
+      Month: {
+        label: "Total Monthly Consumption",
+        total: "9,240",
+        variance: "-8.6%",
+        varianceUp: false,
+        subtext: 'Saved <span class="font-semibold text-primary">870 L</span> compared to last month',
+        dailyVal: "308",
+        personVal: "77.0",
+        chartHeading: "Monthly Trend (4 Weeks)",
+        chartSub: "Weekly totals with 2,500 L target baseline",
+        baselineText: "Baseline 2,500L",
+        bars: [
+          { val: "2.3kL", lbl: "W1", height: "68%", isSpike: false },
+          { val: "2.4kL", lbl: "W2", height: "72%", isSpike: false },
+          { val: "2.8kL", lbl: "W3", height: "88%", isSpike: true, spikeRatio: "20%" },
+          { val: "2.1kL", lbl: "W4", height: "64%", isSpike: false },
+          { val: "1.9kL", lbl: "W5*", height: "55%", isSpike: false },
+          { val: "--", lbl: "Avg", height: "70%", isSpike: false },
+          { val: "Max", lbl: "Peak", height: "88%", isSpike: true, spikeRatio: "20%" }
+        ],
+        alertTitle: "Week 3 Lawn Irrigation Excess",
+        alertVal: "+300 L over weekly target"
+      },
+      Year: {
+        label: "Total Annual Consumption",
+        total: "112,400",
+        variance: "+2.1%",
+        varianceUp: true,
+        subtext: '<span class="text-warning-amber font-semibold">2,300 L higher</span> due to summer heat wave',
+        dailyVal: "307",
+        personVal: "76.9",
+        chartHeading: "Annual Trend (Bi-Monthly)",
+        chartSub: "Bimonthly totals with 20k L optimal tier",
+        baselineText: "Target 19kL",
+        bars: [
+          { val: "17kL", lbl: "J-F", height: "60%", isSpike: false },
+          { val: "18kL", lbl: "M-A", height: "65%", isSpike: false },
+          { val: "24kL", lbl: "M-J", height: "92%", isSpike: true, spikeRatio: "30%" },
+          { val: "22kL", lbl: "J-A", height: "82%", isSpike: false },
+          { val: "16kL", lbl: "S-O", height: "58%", isSpike: false },
+          { val: "15kL", lbl: "N-D", height: "52%", isSpike: false },
+          { val: "Avg", lbl: "Tier", height: "68%", isSpike: false }
+        ],
+        alertTitle: "Summer Thermal Spike Alert",
+        alertVal: "+4,000 L seasonal surge"
+      }
+    };
+
+    // Tab buttons handler
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle tab styles
+        tabButtons.forEach(b => {
+          b.classList.remove('bg-surface-container-lowest', 'text-primary', 'font-semibold', 'shadow-sm');
+          b.classList.add('text-on-surface-variant', 'font-medium');
+        });
+        btn.classList.add('bg-surface-container-lowest', 'text-primary', 'font-semibold', 'shadow-sm');
+        btn.classList.remove('text-on-surface-variant', 'font-medium');
+
+        const period = btn.getAttribute('data-period');
+        const d = dataByPeriod[period];
+        if (!d) return;
+
+        // Animate and update Section 2 stats
+        document.getElementById('metric-period-label').textContent = d.label;
+        document.getElementById('metric-total-value').textContent = d.total;
+        document.getElementById('metric-subtext').innerHTML = d.subtext;
+        document.getElementById('metric-daily-val').textContent = d.dailyVal;
+        document.getElementById('metric-person-val').textContent = d.personVal;
+        document.getElementById('variance-text').textContent = d.variance;
+
+        // Variance styling
+        const varPill = document.getElementById('metric-variance-pill');
+        const varIcon = document.getElementById('variance-icon');
+        if (d.varianceUp) {
+          varPill.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-warning-tint text-warning-amber font-bold text-xs border border-warning-amber/40";
+          varIcon.textContent = "trending_up";
+        } else {
+          varPill.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-secondary-container text-primary font-bold text-xs border border-outline-variant";
+          varIcon.textContent = "trending_down";
+        }
+
+        // Section 3 headings
+        document.getElementById('chart-heading').textContent = d.chartHeading;
+        document.getElementById('chart-subheading').textContent = d.chartSub;
+        document.getElementById('alert-banner-text').textContent = d.alertTitle;
+        document.getElementById('alert-banner-val').textContent = d.alertVal;
+
+        // Re-render chart bars
+        const barsContainer = document.getElementById('chart-bars-container');
+        barsContainer.innerHTML = '';
+        d.bars.forEach(bar => {
+          const barWrapper = document.createElement('div');
+          barWrapper.className = `flex flex-col items-center flex-1 h-full justify-end group cursor-pointer ${bar.isSpike ? 'relative' : ''}`;
+          
+          let barInner = '';
+          if (bar.isSpike) {
+            barInner = `
+              <span class="text-[10px] font-bold text-warning-amber mb-1">${bar.val}</span>
+              <div class="w-full bg-surface-container-low rounded-t-md h-full flex items-end overflow-hidden max-w-[28px] ring-2 ring-warning-amber/50 ring-offset-1">
+                <div class="w-full flex flex-col justify-end bar-transition" style="height: ${bar.height};">
+                  <div class="w-full bg-warning-amber rounded-t-md" style="height: ${bar.spikeRatio || '30%'};"></div>
+                  <div class="w-full bg-primary" style="height: calc(100% - ${bar.spikeRatio || '30%'});"></div>
+                </div>
+              </div>
+              <span class="text-xs text-warning-amber font-bold mt-2">${bar.lbl}</span>
+            `;
+          } else {
+            barInner = `
+              <span class="text-[10px] text-on-surface-variant mb-1 group-hover:text-primary font-medium">${bar.val}</span>
+              <div class="w-full bg-surface-container-low rounded-t-md h-full flex items-end overflow-hidden max-w-[28px]">
+                <div class="w-full bg-primary rounded-t-md group-hover:opacity-90 bar-transition" style="height: ${bar.height};"></div>
+              </div>
+              <span class="text-xs text-on-surface font-medium mt-2">${bar.lbl}</span>
+            `;
+          }
+          barWrapper.innerHTML = barInner;
+          barsContainer.appendChild(barWrapper);
+        });
+      });
+    });
+
+    // Toast helper
+    const showToast = (message) => {
+      const toast = document.getElementById('action-toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    };
+
+    // Eco Schedule Modal Logic
+    const ecoModal = document.getElementById('eco-schedule-modal');
+    const openEcoBtn = document.getElementById('btn-eco-schedule');
+    const closeEcoBtn = document.getElementById('btn-close-modal');
+    const cancelEcoBtn = document.getElementById('btn-cancel-schedule');
+    const saveEcoBtn = document.getElementById('btn-save-schedule');
+
+    openEcoBtn.addEventListener('click', () => {
+      ecoModal.classList.remove('hidden');
+    });
+
+    const hideEcoModal = () => {
+      ecoModal.classList.add('hidden');
+    };
+
+    closeEcoBtn.addEventListener('click', hideEcoModal);
+    cancelEcoBtn.addEventListener('click', hideEcoModal);
+    saveEcoBtn.addEventListener('click', () => {
+      hideEcoModal();
+      showToast('Eco Schedule applied to Saturday cycle!');
+    });
+
+    // Rainwater Cistern Modal Logic
+    const cisternModal = document.getElementById('cistern-details-modal');
+    const rainwaterCard = document.getElementById('rainwater-card-link');
+    const navRainwaterBtn = document.getElementById('nav-rainwater-btn');
+    const closeCisternBtn = document.getElementById('btn-close-cistern-modal');
+    const confirmCisternBtn = document.getElementById('btn-confirm-cistern');
+
+    const openCisternModal = (e) => {
+      if (e) e.preventDefault();
+      cisternModal.classList.remove('hidden');
+    };
+
+    const hideCisternModal = () => {
+      cisternModal.classList.add('hidden');
+    };
+
+    rainwaterCard.addEventListener('click', openCisternModal);
+    navRainwaterBtn.addEventListener('click', openCisternModal);
+    closeCisternBtn.addEventListener('click', hideCisternModal);
+    confirmCisternBtn.addEventListener('click', hideCisternModal);
+
+    // Notification bell feedback
+    document.getElementById('btn-notifications').addEventListener('click', () => {
+      showToast('1 Alert: Saturday laundry consumption spike detected');
+    });
+  });
+</script>
+
+
+</body></html>
